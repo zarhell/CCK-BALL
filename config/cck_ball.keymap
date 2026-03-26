@@ -7,6 +7,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
+#include "private.dtsi"
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
 
@@ -47,21 +48,71 @@
     // Fila 0:  0=TAB  1=Q   2=W   3=E   4=R   5=T  |  6=Y   7=U   8=I   9=O  10=P  11=BSPC
     // Fila 1: 12=ESC 13=A  14=S  15=D  16=F  17=G  | 18=H  19=J  20=K  21=L  22=;  23='"
     // Fila 2: 24=LSH 25=Z  26=X  27=C  28=V  29=B  | 30=N  31=M  32=,  33=.  34=UP 35=/
-    // Fila 3: 36=CTL 37=WIN 38=ALT 39=ISO\ 40=SPC 41=mo1 | 42=mo2 43=SPC 44=ENT 45=LEFT 46=DOWN 47=RGHT
+    // Fila 3: 36=CTL 37=WIN 38=ALT 39=ISO\ 40=SPC 41=mo1 | 42=mo2 43=SPC 44=ENT 45=← 46=↓ 47=→
+    //
+    // Ajustes vs Corne: pos 38(Corne SPC) → 40(CCK SPC), pos 39(Corne RET) → 44(CCK ENT)
 
     combos {
         compatible = "zmk,combos";
 
-        // ── Español (Windows Alt+Numpad, requiere Numlock activo) ──────────
-        combo_tilde_a { timeout-ms = <35>; key-positions = <13 25>; bindings = <&tilde_a>; };  // A+Z → á
-        combo_tilde_e { timeout-ms = <50>; key-positions = <3 15>;  bindings = <&tilde_e>; };  // E+D → é
-        combo_tilde_i { timeout-ms = <35>; key-positions = <8 20>;  bindings = <&tilde_i>; };  // I+K → í
-        combo_tilde_o { timeout-ms = <35>; key-positions = <9 21>;  bindings = <&tilde_o>; };  // O+L → ó
-        combo_tilde_u { timeout-ms = <35>; key-positions = <7 19>;  bindings = <&tilde_u>; };  // U+J → ú
-        combo_enie    { timeout-ms = <35>; key-positions = <19 30>; bindings = <&enie>; };     // J+N → ñ
+        // ── Control ────────────────────────────────────────────────────────
+        combo_selword  { timeout-ms = <35>; key-positions = <3 5>;        bindings = <&sel_word>; };  // E+T → seleccionar palabra
+        combo_enter    { timeout-ms = <35>; key-positions = <29 44>;      bindings = <&kp RET>; };    // B+ENT → Enter
+        combo_bspc     { timeout-ms = <35>; key-positions = <17 40>;      bindings = <&kp BSPC>; };   // G+SPC → Backspace
+        combo_del      { timeout-ms = <35>; key-positions = <5 40>;       bindings = <&kp DEL>; };    // T+SPC → Delete
+        combo_space    { timeout-ms = <35>; key-positions = <30 44>;      bindings = <&kp SPACE>; };  // N+ENT → Space
+        combo_caps     { timeout-ms = <35>; key-positions = <24 25 26>;   bindings = <&kp CAPS>; };   // LSH+Z+X → CapsLock
+        combo_app      { timeout-ms = <35>; key-positions = <30 31>;      bindings = <&kp K_APP>; };  // N+M → App/Context menu
+        combo_comma    { timeout-ms = <35>; key-positions = <14 26>;      bindings = <&kp COMMA>; };  // S+X → ,
+        combo_dot      { timeout-ms = <35>; key-positions = <15 27>;      bindings = <&kp DOT>; };    // D+C → .
+        combo_semi     { timeout-ms = <35>; key-positions = <16 28>;      bindings = <&kp SEMI>; };   // F+V → ;
 
-        // ── Navegación ─────────────────────────────────────────────────────
-        combo_selword { timeout-ms = <35>; key-positions = <3 5>;   bindings = <&sel_word>; }; // E+T → seleccionar palabra
+        // ── Brackets (ancla TAB=pos 0) ────────────────────────────────────
+        combo_lbrc     { timeout-ms = <35>; key-positions = <0 1>;        bindings = <&kp LBKT>; };   // TAB+Q → [
+        combo_rbrc     { timeout-ms = <35>; key-positions = <0 2>;        bindings = <&kp RBKT>; };   // TAB+W → ]
+        combo_lcbr     { timeout-ms = <35>; key-positions = <0 13>;       bindings = <&kp LBRC>; };   // TAB+A → {
+        combo_rcbr     { timeout-ms = <35>; key-positions = <0 14>;       bindings = <&kp RBRC>; };   // TAB+S → }
+        combo_lprn     { timeout-ms = <35>; key-positions = <0 25>;       bindings = <&kp LPAR>; };   // TAB+Z → (
+        combo_rprn     { timeout-ms = <35>; key-positions = <0 26>;       bindings = <&kp RPAR>; };   // TAB+X → )
+
+        // ── Símbolos ──────────────────────────────────────────────────────
+        combo_slash    { timeout-ms = <35>; key-positions = <4 15 26>;    bindings = <&kp FSLH>; };   // R+D+X → /
+        combo_bslash   { timeout-ms = <35>; key-positions = <2 15 28>;    bindings = <&kp BSLH>; };   // W+D+V → backslash
+        combo_pipe     { timeout-ms = <35>; key-positions = <3 15 27>;    bindings = <&kp PIPE>; };   // E+D+C → |
+        combo_caret    { timeout-ms = <35>; key-positions = <3 14 16>;    bindings = <&kp CARET>; };  // E+S+F → ^
+        combo_lt       { timeout-ms = <35>; key-positions = <3 14 27>;    bindings = <&kp LT>; };     // E+S+C → <
+        combo_gt       { timeout-ms = <35>; key-positions = <3 16 27>;    bindings = <&kp GT>; };     // E+F+C → >
+        combo_grave    { timeout-ms = <35>; key-positions = <4 17>;       bindings = <&kp GRAVE>; };  // R+G → `
+        combo_acute    { timeout-ms = <35>; key-positions = <4 15>;       bindings = <&macro_acute>; }; // R+D → ´
+        combo_comment  { timeout-ms = <35>; key-positions = <15 16 26>;   bindings = <&dev_comment>; }; // D+F+X → Ctrl+/
+        combo_tilde    { timeout-ms = <35>; key-positions = <1 16>;       bindings = <&kp TILDE>; };  // Q+F → ~
+        combo_quote    { timeout-ms = <35>; key-positions = <2 4>;        bindings = <&kp SQT>; };    // W+R → '
+        combo_hash     { timeout-ms = <35>; key-positions = <3 4 5>;      bindings = <&kp HASH>; };   // E+R+T → #
+        combo_perc     { timeout-ms = <35>; key-positions = <2 28>;       bindings = <&kp PRCNT>; };  // W+V → %
+        combo_excl     { timeout-ms = <35>; key-positions = <2 3 16>;     bindings = <&kp EXCL>; };   // W+E+F → !
+        combo_ques     { timeout-ms = <35>; key-positions = <4 14 15>;    bindings = <&kp QMARK>; };  // R+S+D → ?
+        combo_dollar   { timeout-ms = <35>; key-positions = <4 26 27>;    bindings = <&kp DLLR>; };   // R+X+C → $
+        combo_at       { timeout-ms = <35>; key-positions = <2 15 16>;    bindings = <&kp AT>; };     // W+D+F → @
+        combo_amp      { timeout-ms = <35>; key-positions = <15 17>;      bindings = <&kp AMPS>; };   // D+G → &
+        combo_star     { timeout-ms = <35>; key-positions = <27 28 29>;   bindings = <&kp STAR>; };   // C+V+B → *
+        combo_equal    { timeout-ms = <35>; key-positions = <4 5>;        bindings = <&kp EQUAL>; };  // R+T → =
+        combo_minus    { timeout-ms = <35>; key-positions = <16 17>;      bindings = <&kp MINUS>; };  // F+G → -
+        combo_under    { timeout-ms = <35>; key-positions = <28 29>;      bindings = <&kp UNDER>; };  // V+B → _
+        combo_plus     { timeout-ms = <35>; key-positions = <15 16 17>;   bindings = <&kp PLUS>; };   // D+F+G → +
+
+        // ── Español (Windows Alt+Numpad, requiere Numlock activo) ──────────
+        combo_tilde_a  { timeout-ms = <35>; key-positions = <13 25>;      bindings = <&tilde_a>; };   // A+Z → á
+        combo_tilde_e  { timeout-ms = <50>; key-positions = <3 15>;       bindings = <&tilde_e>; };   // E+D → é  (50ms: evita conflicto con combo_pipe E+D+C)
+        combo_tilde_i  { timeout-ms = <35>; key-positions = <8 20>;       bindings = <&tilde_i>; };   // I+K → í
+        combo_tilde_o  { timeout-ms = <35>; key-positions = <9 21>;       bindings = <&tilde_o>; };   // O+L → ó
+        combo_tilde_u  { timeout-ms = <35>; key-positions = <7 19>;       bindings = <&tilde_u>; };   // U+J → ú
+        combo_enie     { timeout-ms = <35>; key-positions = <19 30>;      bindings = <&enie>; };      // J+N → ñ
+
+        // ── Misc — datos de private.dtsi ──────────────────────────────────
+        combo_email_gmail { timeout-ms = <50>; key-positions = <13 14 15 16>; bindings = <&macro_email_gmail>; }; // A+S+D+F
+        combo_email_work  { timeout-ms = <50>; key-positions = <18 19 20 21>; bindings = <&macro_email_work>; };  // H+J+K+L
+        combo_username    { timeout-ms = <50>; key-positions = <4 7 14>;      bindings = <&macro_username>; };    // R+U+S
+        combo_password    { timeout-ms = <50>; key-positions = <2 10>;        bindings = <&macro_password>; };    // W+P
     };
 
     behaviors {
@@ -102,7 +153,7 @@
             bindings = <&ocang>, <&kp LT>, <&kp GT>;
         };
 
-        // Shift+Backspace → Delete (del QMK port)
+        // Shift+Backspace → Delete
         bspc_del: backspace_delete {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -134,7 +185,7 @@
             bindings = <&macro_tap &kp LT &kp GT &kp LEFT_ARROW>;
         };
 
-        // ── Navegación (del QMK port) ──────────────────────────────────────
+        // ── Navegación ────────────────────────────────────────────────────
         sel_word: sel_word {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -256,8 +307,6 @@
         compatible = "zmk,keymap";
 
         // ── Capa 0: QWERTY base ───────────────────────────────────────────
-        // Izquierdo: TAB Q W E R T / ESC A S D F G / LSHFT Z X C V B / LCTRL LWIN LALT …
-        // Derecho:   Y U I O P BSPC / H J K L ; ' / N M , . UP / / mo2 SPC ENT ← ↓ →
         QWERTY {
             bindings = <
 &kp TAB     &kp Q         &kp W         &kp E            &kp R      &kp T   &kp Y   &kp U      &kp I      &kp O           &kp P           &bspc_del
@@ -270,8 +319,6 @@
         };
 
         // ── Capa 1: Navegación (izq) + Numpad (der) ───────────────────────
-        // Izquierdo: navegación vim-style con macros de palabra/línea
-        // Derecho:   numpad + símbolos matemáticos
         SYM_layers {
             bindings = <
 &kp GRAVE   &dev_home     &kp UP         &dev_end          &ang_dance   &none        &paranthesis_dance  &kp N7     &kp N8   &kp N9   &none      &trans
@@ -326,8 +373,8 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
 
-            sensor-bindings = <&scroll_vertical_encoder>,   // Encoder 1: vertical scroll
-                             <&scroll_horizontal_encoder>;  // Encoder 2: horizontal scroll
+            sensor-bindings = <&scroll_vertical_encoder>,
+                             <&scroll_horizontal_encoder>;
         };
     };
 };

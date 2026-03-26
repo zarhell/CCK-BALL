@@ -1,0 +1,60 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// private.dtsi — Macros con datos personales
+//
+// INSTRUCCIONES:
+//   1. Copia este archivo: cp private.dtsi.example private.dtsi
+//   2. Rellena con tus datos reales en private.dtsi
+//   3. private.dtsi está en .gitignore — NUNCA se sube a GitHub
+// ─────────────────────────────────────────────────────────────────────────────
+
+/ {
+    macros {
+        // ── Email personal (combo: A+S+D+F = posiciones 13+14+15+16) ──────
+        // Reemplaza cada &kp con las teclas de tu email
+        // Herramienta para generar: https://zmk.studio o escribe letra a letra
+        macro_email_gmail: macro_email_gmail {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                // Ejemplo: u s e r @ g m a i l . c o m
+                = <&kp U &kp S &kp E &kp R>
+                , <&kp AT>
+                , <&kp G &kp M &kp A &kp I &kp L>
+                , <&kp DOT>
+                , <&kp C &kp O &kp M>;
+        };
+
+        // ── Email trabajo (combo: H+J+K+L = posiciones 18+19+20+21) ──────
+        macro_email_work: macro_email_work {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                // Ejemplo: user@company.com
+                = <&kp U &kp S &kp E &kp R>
+                , <&kp AT>
+                , <&kp C &kp O &kp M &kp P &kp A &kp N &kp Y>
+                , <&kp DOT>
+                , <&kp C &kp O &kp M>;
+        };
+
+        // ── Username (combo: R+U+S = posiciones 4+7+14) ───────────────────
+        macro_username: macro_username {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                // Ejemplo: myusername
+                = <&kp M &kp Y &kp U &kp S &kp E &kp R &kp N &kp A &kp M &kp E>;
+        };
+
+        // ── Password (combo: W+P = posiciones 2+10) ───────────────────────
+        // ADVERTENCIA: evita guardar contraseñas reales aquí si puedes.
+        // Usa un gestor de contraseñas siempre que sea posible.
+        macro_password: macro_password {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                // Ejemplo: MyP@ssw0rd
+                = <&kp M &kp Y &kp LS(P) &kp AT &kp LS(S) &kp LS(S) &kp W &kp N0 &kp R &kp D>;
+        };
+    };
+};
