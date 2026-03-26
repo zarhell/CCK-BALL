@@ -42,21 +42,40 @@
         bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
         tap-ms = <100>;
     };
-    
+
+    // ─── Posiciones CCK-BALL (48 teclas, 6 cols × 4 filas) ────────────────
+    // Fila 0:  0=TAB  1=Q   2=W   3=E   4=R   5=T  |  6=Y   7=U   8=I   9=O  10=P  11=BSPC
+    // Fila 1: 12=ESC 13=A  14=S  15=D  16=F  17=G  | 18=H  19=J  20=K  21=L  22=;  23='"
+    // Fila 2: 24=LSH 25=Z  26=X  27=C  28=V  29=B  | 30=N  31=M  32=,  33=.  34=UP 35=/
+    // Fila 3: 36=CTL 37=WIN 38=ALT 39=ISO\ 40=SPC 41=mo1 | 42=mo2 43=SPC 44=ENT 45=LEFT 46=DOWN 47=RGHT
+
+    combos {
+        compatible = "zmk,combos";
+
+        // ── Español (Windows Alt+Numpad, requiere Numlock activo) ──────────
+        combo_tilde_a { timeout-ms = <35>; key-positions = <13 25>; bindings = <&tilde_a>; };  // A+Z → á
+        combo_tilde_e { timeout-ms = <50>; key-positions = <3 15>;  bindings = <&tilde_e>; };  // E+D → é
+        combo_tilde_i { timeout-ms = <35>; key-positions = <8 20>;  bindings = <&tilde_i>; };  // I+K → í
+        combo_tilde_o { timeout-ms = <35>; key-positions = <9 21>;  bindings = <&tilde_o>; };  // O+L → ó
+        combo_tilde_u { timeout-ms = <35>; key-positions = <7 19>;  bindings = <&tilde_u>; };  // U+J → ú
+        combo_enie    { timeout-ms = <35>; key-positions = <19 30>; bindings = <&enie>; };     // J+N → ñ
+
+        // ── Navegación ─────────────────────────────────────────────────────
+        combo_selword { timeout-ms = <35>; key-positions = <3 5>;   bindings = <&sel_word>; }; // E+T → seleccionar palabra
+    };
+
     behaviors {
         td_colon: td_colon {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&kp SEMI>, <&kp COLON>;    
-            
+            bindings = <&kp SEMI>, <&kp COLON>;
         };
         td_quote: td_quote {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp SQT>, <&kp DQT>, <&kp AT>;
-            
         };
         paranthesis_dance: paranthesis_dance {
             compatible = "zmk,behavior-tap-dance";
@@ -82,45 +101,166 @@
             tapping-term-ms = <200>;
             bindings = <&ocang>, <&kp LT>, <&kp GT>;
         };
+
+        // Shift+Backspace → Delete (del QMK port)
+        bspc_del: backspace_delete {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BSPC>, <&kp DEL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 
     macros {
+        // ── Brackets con cursor posicionado ───────────────────────────────
         ocpar: ocpar {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings
-                = <&macro_tap &kp LPAR &kp RPAR &kp LEFT_ARROW>
-                ;
+            bindings = <&macro_tap &kp LPAR &kp RPAR &kp LEFT_ARROW>;
         };
         occurl: occurl {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings
-                = <&macro_tap &kp LBRC &kp RBRC &kp LEFT_ARROW>
-                ;
+            bindings = <&macro_tap &kp LBRC &kp RBRC &kp LEFT_ARROW>;
         };
         ocsqu: ocsqu {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings
-                = <&macro_tap &kp LBKT &kp RBKT &kp LEFT_ARROW>
-                ;
+            bindings = <&macro_tap &kp LBKT &kp RBKT &kp LEFT_ARROW>;
         };
         ocang: ocang {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
+            bindings = <&macro_tap &kp LT &kp GT &kp LEFT_ARROW>;
+        };
+
+        // ── Navegación (del QMK port) ──────────────────────────────────────
+        sel_word: sel_word {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
             bindings
-                = <&macro_tap &kp LT &kp GT &kp LEFT_ARROW>
-                ;
+                = <&macro_press &kp LCTRL &kp LSHFT>,
+                  <&kp RIGHT>,
+                  <&macro_release &kp LCTRL &kp LSHFT>;
+        };
+        dev_home: dev_home {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp HOME>;
+        };
+        dev_end: dev_end {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp END>;
+        };
+        wd_left: wd_left {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>,
+                  <&kp LEFT>,
+                  <&macro_release &kp LCTRL>;
+        };
+        wd_rght: wd_rght {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>,
+                  <&kp RIGHT>,
+                  <&macro_release &kp LCTRL>;
+        };
+        dev_comment: dev_comment {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>,
+                  <&kp FSLH>,
+                  <&macro_release &kp LCTRL>;
+        };
+        win_swap: win_swap {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LALT>,
+                  <&kp TAB>,
+                  <&macro_release &kp LALT>;
+        };
+
+        // ── Español — Windows Alt+Numpad (requiere Numlock activo) ─────────
+        // á = Alt+0160
+        tilde_a: tilde_a {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp RALT>,
+                  <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N6 &kp KP_N0>,
+                  <&macro_release &kp RALT>;
+        };
+        // é = Alt+0130
+        tilde_e: tilde_e {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp RALT>,
+                  <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N3 &kp KP_N0>,
+                  <&macro_release &kp RALT>;
+        };
+        // í = Alt+0161
+        tilde_i: tilde_i {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp RALT>,
+                  <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N6 &kp KP_N1>,
+                  <&macro_release &kp RALT>;
+        };
+        // ó = Alt+0163
+        tilde_o: tilde_o {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp RALT>,
+                  <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N6 &kp KP_N3>,
+                  <&macro_release &kp RALT>;
+        };
+        // ú = Alt+0150
+        tilde_u: tilde_u {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp RALT>,
+                  <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N5 &kp KP_N0>,
+                  <&macro_release &kp RALT>;
+        };
+        // ñ = Alt+0164
+        enie: enie {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp RALT>,
+                  <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N6 &kp KP_N4>,
+                  <&macro_release &kp RALT>;
+        };
+        // ´ = Alt+0180
+        macro_acute: macro_acute {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp RALT>,
+                  <&macro_tap &kp KP_N0 &kp KP_N1 &kp KP_N8 &kp KP_N0>,
+                  <&macro_release &kp RALT>;
         };
     };
-    
+
     keymap {
         compatible = "zmk,keymap";
 
+        // ── Capa 0: QWERTY base ───────────────────────────────────────────
+        // Izquierdo: TAB Q W E R T / ESC A S D F G / LSHFT Z X C V B / LCTRL LWIN LALT …
+        // Derecho:   Y U I O P BSPC / H J K L ; ' / N M , . UP / / mo2 SPC ENT ← ↓ →
         QWERTY {
             bindings = <
-&kp TAB     &kp Q         &kp W         &kp E            &kp R      &kp T   &kp Y   &kp U      &kp I      &kp O           &kp P           &kp BSPC
+&kp TAB     &kp Q         &kp W         &kp E            &kp R      &kp T   &kp Y   &kp U      &kp I      &kp O           &kp P           &bspc_del
 &kp ESC     &kp A         &kp S         &kp D            &kp F      &kp G   &kp H   &kp J      &kp K      &kp L           &td_colon       &td_quote
 &kp LSHIFT  &kp Z         &kp X         &kp C            &kp V      &kp B   &kp N   &kp M      &kp COMMA  &kp DOT         &kp UP_ARROW    &kp FSLH
 &kp LCTRL   &kp LWIN      &kp LALT      &kp NON_US_BSLH  &kp SPACE  &mo 1   &mo 2   &kp SPACE  &kp ENTER  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW
@@ -129,17 +269,21 @@
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_vertical_encoder>;
         };
 
+        // ── Capa 1: Navegación (izq) + Numpad (der) ───────────────────────
+        // Izquierdo: navegación vim-style con macros de palabra/línea
+        // Derecho:   numpad + símbolos matemáticos
         SYM_layers {
             bindings = <
-&kp GRAVE   &kp INS   &kp PG_UP      &kp HOME          &ang_dance   &none        &paranthesis_dance     &kp N7      &kp N8   &kp N9   &none      &trans
-&none       &kp DEL   &kp PG_DN      &kp END           &squ_dance   &curl_dance  &kp EQUAL              &kp N4      &kp N5   &kp N6   &kp STAR   &none
-&kp LSHIFT  &kp PSCRN &kp C_AL_LOCK  &kp LC(LA(DEL))   &mo 3        &none        &kp MINUS              &kp N1      &kp N2   &kp N3   &kp FSLH   &none
-&kp LCTRL   &kp LGUI  &kp LALT       &kp NON_US_HASH   &none        &none        &mkp LCLK              &mkp RCLK  &none   &kp N0   &kp DOT    &kp K_CMENU
+&kp GRAVE   &dev_home     &kp UP         &dev_end          &ang_dance   &none        &paranthesis_dance  &kp N7     &kp N8   &kp N9   &none      &trans
+&none       &win_swap     &kp LEFT       &kp DOWN          &kp RIGHT    &curl_dance  &kp EQUAL           &kp N4     &kp N5   &kp N6   &kp STAR   &none
+&kp LSHIFT  &wd_left      &kp PSCRN      &wd_rght          &mo 3        &none        &kp MINUS           &kp N1     &kp N2   &kp N3   &kp FSLH   &none
+&kp LCTRL   &kp LWIN      &kp LALT       &kp NON_US_HASH   &none        &none        &mkp LCLK           &mkp RCLK  &none    &kp N0   &kp DOT    &kp K_CMENU
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_horizontal_encoder>;
         };
 
+        // ── Capa 2: F-keys (izq) + KP extendido (der) ────────────────────
         FKP_layers {
             bindings = <
 &kp SYSREQ  &kp F9          &kp F10       &kp F11       &kp F12      &none        &kp KP_NUM   &kp KP_N7  &kp KP_N8  &kp KP_N9     &kp KP_MULTIPLY  &none
@@ -151,6 +295,7 @@
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
+        // ── Capa 3: Bluetooth ─────────────────────────────────────────────
         BT_layers {
             bindings = <
 &bootloader  &none           &none         &none        &none        &none        &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5
