@@ -1,0 +1,41 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// private.dtsi — Macros con datos personales
+//
+// Este archivo contiene placeholders para que el CI compile correctamente.
+// Para usar tus datos reales localmente:
+//   1. Edita este archivo con tus datos (ver private.dtsi.example)
+//   2. Ejecuta: git update-index --assume-unchanged config/private.dtsi
+//      (git ignorará los cambios locales sin necesidad de .gitignore)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/ {
+    macros {
+        // Email personal (combo: A+S+D+F)
+        macro_email_gmail: macro_email_gmail {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp U &kp S &kp E &kp R &kp AT &kp E &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O &kp M>;
+        };
+
+        // Email trabajo (combo: H+J+K+L)
+        macro_email_work: macro_email_work {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp U &kp S &kp E &kp R &kp AT &kp W &kp O &kp R &kp K &kp DOT &kp C &kp O &kp M>;
+        };
+
+        // Username (combo: R+U+S)
+        macro_username: macro_username {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp U &kp S &kp E &kp R &kp N &kp A &kp M &kp E>;
+        };
+
+        // Password (combo: W+P)
+        macro_password: macro_password {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp P &kp A &kp S &kp S &kp W &kp O &kp R &kp D>;
+        };
+    };
+};
