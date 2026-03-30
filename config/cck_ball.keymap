@@ -82,12 +82,12 @@
         }; // LSFT+Z+X
         combo_app      { timeout-ms = <35>; key-positions = <30 31>;     bindings = <&kp K_APP>;
         }; // N+M
-        combo_comma    { timeout-ms = <35>; key-positions = <14 26>;     bindings = <&kp COMMA>;
-        }; // S+X
-        combo_dot      { timeout-ms = <35>; key-positions = <15 27>;     bindings = <&kp DOT>;
-        }; // D+C
-        combo_semi     { timeout-ms = <35>; key-positions = <16 28>;     bindings = <&kp SEMI>;
-        }; // F+V
+        combo_comma    { timeout-ms = <35>; key-positions = <14 27>;     bindings = <&kp COMMA>;
+        }; // S+C
+        combo_dot      { timeout-ms = <35>; key-positions = <15 28>;     bindings = <&kp DOT>;
+        }; // D+V
+        combo_semi     { timeout-ms = <35>; key-positions = <16 29>;     bindings = <&kp SEMI>;
+        }; // F+B
 
         // ── Brackets (ancla TAB=pos 0) ────────────────────────────────────
         combo_lbrc     { timeout-ms = <35>; key-positions = <0 1>;       bindings = <&kp LBKT>;
@@ -173,8 +173,8 @@
         //     LCLK : T(5)  + G(17)  columna índice arriba→home
         //     RCLK : G(17) + B(29)  columna índice home→abajo
         //     MCLK : G(17) + V(28)  diagonal índice home
-        //     ´    : F(16) + T(5)   dead acute (reemplaza BACK izq)
-        //     FWD  : F(16) + B(29)  diagonal índice home→abajo
+        //     ´    : F(16) + T(5)   dead acute
+        //     ;    : F(16) + B(29)  (reemplaza FWD izq)
         //
         //   DERECHO  (zona índice der: H=18 J=19 K=20 Y=6 U=7)
         //     LCLK : H(18) + J(19)  home row adyacente
@@ -191,8 +191,7 @@
         }; // G+V (izq)
         combo_dead_acute   { timeout-ms = <35>; key-positions = <5 16>;  bindings = <&kp RA(SQT)>;
         }; // F+T → ´ dead acute (Win: US-International / Mac: ABC-Extended o US-Intl-PC)
-        combo_mouse_fwd_l  { timeout-ms = <35>; key-positions = <16 29>; bindings = <&mkp MB5>;
-        }; // F+B (izq) → adelante
+        // F+B (izq) liberado → ahora es combo_semi (;)
         combo_mouse_lclk_r { timeout-ms = <35>; key-positions = <18 19>; bindings = <&mkp LCLK>;
         }; // H+J (der)
         combo_mouse_rclk_r { timeout-ms = <35>; key-positions = <19 20>; bindings = <&mkp RCLK>;
@@ -203,6 +202,14 @@
         }; // U+H (der) → atrás
         combo_mouse_fwd_r  { timeout-ms = <35>; key-positions = <6 19>;  bindings = <&mkp MB5>;
         }; // Y+J (der) → adelante
+
+        // ── macOS escritorios (Command+←/→/↑) ────────────────────────────
+        combo_desk_right { timeout-ms = <50>; key-positions = <1 15>;      bindings = <&kp LG(RIGHT)>;
+        }; // Q+D → Cmd+→ (escritorio derecho)
+        combo_desk_left  { timeout-ms = <50>; key-positions = <3 13>;      bindings = <&kp LG(LEFT)>;
+        }; // E+A → Cmd+← (escritorio izquierdo)
+        combo_desk_up    { timeout-ms = <50>; key-positions = <2 13 15>;   bindings = <&kp LG(UP)>;
+        }; // W+A+D → Cmd+↑ (Mission Control)
 
         // ── Scroll / Snipe ────────────────────────────────────────────────
         combo_scroll_tog { timeout-ms = <50>; key-positions = <41 42>;   bindings = <&tog 4>;
@@ -475,7 +482,7 @@ keymap {
     // ──────────────────────── CAPA 5: SNIPE ────────────────────────
     snipe-layers {
         bindings = <
-&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &ctrans &trans &trans
 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
