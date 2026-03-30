@@ -9,8 +9,10 @@
 #include <dt-bindings/zmk/pointing.h>
 #include "private.dtsi"
 
-&mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
-&msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
+&mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>;
+};
+&msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>;
+};
 
 &msc {
     acceleration-exponent = <0>;
@@ -24,7 +26,8 @@
     trigger-period-ms = <16>;
 };
 
-&soft_off { hold-time-ms = <2000>; };
+&soft_off { hold-time-ms = <2000>;
+};
 
 / {
     scroll_vertical_encoder: scroll_vertical_encoder {
@@ -54,58 +57,106 @@
         compatible = "zmk,combos";
 
         // ── Control ────────────────────────────────────────────────────────
-        combo_selword  { timeout-ms = <35>; key-positions = <3 5>;       bindings = <&sel_word>; };  // E+T → sel. palabra
-        combo_enter    { timeout-ms = <35>; key-positions = <29 43>;     bindings = <&kp RET>; };    // B+ENT
-        combo_bspc     { timeout-ms = <35>; key-positions = <17 40>;     bindings = <&kp BSPC>; };   // G+SPC
-        combo_del      { timeout-ms = <35>; key-positions = <5 40>;      bindings = <&kp DEL>; };    // T+SPC
-        combo_space    { timeout-ms = <35>; key-positions = <30 43>;     bindings = <&kp SPACE>; };  // N+ENT
-        combo_caps     { timeout-ms = <35>; key-positions = <24 25 26>;  bindings = <&kp CAPS>; };   // LSFT+Z+X
-        combo_app      { timeout-ms = <35>; key-positions = <30 31>;     bindings = <&kp K_APP>; };  // N+M
-        combo_comma    { timeout-ms = <35>; key-positions = <14 26>;     bindings = <&kp COMMA>; };  // S+X
-        combo_dot      { timeout-ms = <35>; key-positions = <15 27>;     bindings = <&kp DOT>; };    // D+C
-        combo_semi     { timeout-ms = <35>; key-positions = <16 28>;     bindings = <&kp SEMI>; };   // F+V
+        combo_selword  { timeout-ms = <35>; key-positions = <3 5>;       bindings = <&sel_word>;
+        }; // E+T → sel. palabra
+        combo_enter    { timeout-ms = <35>; key-positions = <29 43>;     bindings = <&kp RET>;
+        }; // B+ENT
+        combo_enter_spc { timeout-ms = <35>; key-positions = <29 40>;   bindings = <&kp RET>;
+        }; // B+SPC → ENTER
+        combo_bspc     { timeout-ms = <35>; key-positions = <17 40>;     bindings = <&kp BSPC>;
+        }; // G+SPC
+        combo_del      { timeout-ms = <35>; key-positions = <5 40>;      bindings = <&kp DEL>;
+        }; // T+SPC
+        combo_space    { timeout-ms = <35>; key-positions = <30 43>;     bindings = <&kp SPACE>;
+        }; // N+ENT
+        combo_caps     { timeout-ms = <35>; key-positions = <24 25 26>;  bindings = <&kp CAPS>;
+        }; // LSFT+Z+X
+        combo_app      { timeout-ms = <35>; key-positions = <30 31>;     bindings = <&kp K_APP>;
+        }; // N+M
+        combo_comma    { timeout-ms = <35>; key-positions = <14 26>;     bindings = <&kp COMMA>;
+        }; // S+X
+        combo_dot      { timeout-ms = <35>; key-positions = <15 27>;     bindings = <&kp DOT>;
+        }; // D+C
+        combo_semi     { timeout-ms = <35>; key-positions = <16 28>;     bindings = <&kp SEMI>;
+        }; // F+V
 
         // ── Brackets (ancla TAB=pos 0) ────────────────────────────────────
-        combo_lbrc     { timeout-ms = <35>; key-positions = <0 1>;       bindings = <&kp LBKT>; };   // TAB+Q → [
-        combo_rbrc     { timeout-ms = <35>; key-positions = <0 2>;       bindings = <&kp RBKT>; };   // TAB+W → ]
-        combo_lcbr     { timeout-ms = <35>; key-positions = <0 13>;      bindings = <&kp LBRC>; };   // TAB+A → {
-        combo_rcbr     { timeout-ms = <35>; key-positions = <0 14>;      bindings = <&kp RBRC>; };   // TAB+S → }
-        combo_lprn     { timeout-ms = <35>; key-positions = <0 25>;      bindings = <&kp LPAR>; };   // TAB+Z → (
-        combo_rprn     { timeout-ms = <35>; key-positions = <0 26>;      bindings = <&kp RPAR>; };   // TAB+X → )
+        combo_lbrc     { timeout-ms = <35>; key-positions = <0 1>;       bindings = <&kp LBKT>;
+        }; // TAB+Q → [
+        combo_rbrc     { timeout-ms = <35>; key-positions = <0 2>;       bindings = <&kp RBKT>;
+        }; // TAB+W → ]
+        combo_lcbr     { timeout-ms = <35>; key-positions = <0 13>;      bindings = <&kp LBRC>;
+        }; // TAB+A → {
+        combo_rcbr     { timeout-ms = <35>; key-positions = <0 14>;      bindings = <&kp RBRC>;
+        }; // TAB+S → }
+        combo_lprn     { timeout-ms = <35>; key-positions = <0 25>;      bindings = <&kp LPAR>;
+        }; // TAB+Z → (
+        combo_rprn     { timeout-ms = <35>; key-positions = <0 26>;      bindings = <&kp RPAR>;
+        }; // TAB+X → )
 
         // ── Símbolos ──────────────────────────────────────────────────────
-        combo_slash    { timeout-ms = <35>; key-positions = <4 15 26>;   bindings = <&kp FSLH>; };    // R+D+X
-        combo_bslash   { timeout-ms = <35>; key-positions = <2 15 28>;   bindings = <&kp BSLH>; };    // W+D+V
-        combo_pipe     { timeout-ms = <35>; key-positions = <3 15 27>;   bindings = <&kp PIPE>; };    // E+D+C
-        combo_caret    { timeout-ms = <35>; key-positions = <3 14 16>;   bindings = <&kp CARET>; };   // E+S+F
-        combo_lt       { timeout-ms = <35>; key-positions = <3 14 27>;   bindings = <&kp LT>; };      // E+S+C
-        combo_gt       { timeout-ms = <35>; key-positions = <3 16 27>;   bindings = <&kp GT>; };      // E+F+C
-        combo_grave    { timeout-ms = <35>; key-positions = <4 17>;      bindings = <&kp GRAVE>; };   // R+G
-        combo_acute    { timeout-ms = <35>; key-positions = <4 15>;      bindings = <&kp RA(SQT)>; }; // R+D → ´ (AltGr+')
-        combo_comment  { timeout-ms = <35>; key-positions = <15 16 26>;  bindings = <&dev_comment>; };// D+F+X → Ctrl+/
-        combo_tilde    { timeout-ms = <35>; key-positions = <1 16>;      bindings = <&kp TILDE>; };   // Q+F
-        combo_quote    { timeout-ms = <35>; key-positions = <2 4>;       bindings = <&kp SQT>; };     // W+R
-        combo_hash     { timeout-ms = <35>; key-positions = <3 4 5>;     bindings = <&kp HASH>; };    // E+R+T
-        combo_perc     { timeout-ms = <35>; key-positions = <2 28>;      bindings = <&kp PRCNT>; };   // W+V
-        combo_excl     { timeout-ms = <35>; key-positions = <2 3 16>;    bindings = <&kp EXCL>; };    // W+E+F
-        combo_ques     { timeout-ms = <35>; key-positions = <4 14 15>;   bindings = <&kp QMARK>; };   // R+S+D
-        combo_dollar   { timeout-ms = <35>; key-positions = <4 26 27>;   bindings = <&kp DLLR>; };    // R+X+C
-        combo_at       { timeout-ms = <35>; key-positions = <2 15 16>;   bindings = <&kp AT>; };      // W+D+F
-        combo_amp      { timeout-ms = <35>; key-positions = <15 17>;     bindings = <&kp AMPS>; };    // D+G
-        combo_star     { timeout-ms = <35>; key-positions = <27 28 29>;  bindings = <&kp STAR>; };    // C+V+B
-        combo_equal    { timeout-ms = <35>; key-positions = <4 5>;       bindings = <&kp EQUAL>; };   // R+T
-        combo_minus    { timeout-ms = <35>; key-positions = <16 17>;     bindings = <&kp MINUS>; };   // F+G
-        combo_under    { timeout-ms = <35>; key-positions = <28 29>;     bindings = <&kp UNDER>; };   // V+B
-        combo_plus     { timeout-ms = <35>; key-positions = <15 16 17>;  bindings = <&kp PLUS>; };    // D+F+G
+        combo_slash    { timeout-ms = <35>; key-positions = <4 15 26>;   bindings = <&kp FSLH>;
+        }; // R+D+X
+        combo_bslash   { timeout-ms = <35>; key-positions = <2 15 28>;   bindings = <&kp BSLH>;
+        }; // W+D+V
+        combo_pipe     { timeout-ms = <35>; key-positions = <3 15 27>;   bindings = <&kp PIPE>;
+        }; // E+D+C
+        combo_caret    { timeout-ms = <35>; key-positions = <3 14 16>;   bindings = <&kp CARET>;
+        }; // E+S+F
+        combo_lt       { timeout-ms = <35>; key-positions = <3 14 27>;   bindings = <&kp LT>;
+        }; // E+S+C
+        combo_gt       { timeout-ms = <35>; key-positions = <3 16 27>;   bindings = <&kp GT>;
+        }; // E+F+C
+        combo_grave    { timeout-ms = <35>; key-positions = <4 17>;      bindings = <&kp GRAVE>;
+        }; // R+G
+        combo_acute    { timeout-ms = <35>; key-positions = <4 15>;      bindings = <&kp RA(SQT)>;
+        }; // R+D → ´ (AltGr+')
+        combo_comment  { timeout-ms = <35>; key-positions = <15 16 26>;  bindings = <&dev_comment>;
+        }; // D+F+X → Ctrl+/
+        combo_tilde    { timeout-ms = <35>; key-positions = <1 16>;      bindings = <&kp TILDE>;
+        }; // Q+F
+        combo_quote    { timeout-ms = <35>; key-positions = <2 4>;       bindings = <&kp SQT>;
+        }; // W+R
+        combo_hash     { timeout-ms = <35>; key-positions = <3 4 5>;     bindings = <&kp HASH>;
+        }; // E+R+T
+        combo_perc     { timeout-ms = <35>; key-positions = <2 28>;      bindings = <&kp PRCNT>;
+        }; // W+V
+        combo_excl     { timeout-ms = <35>; key-positions = <2 3 16>;    bindings = <&kp EXCL>;
+        }; // W+E+F
+        combo_ques     { timeout-ms = <35>; key-positions = <4 14 15>;   bindings = <&kp QMARK>;
+        }; // R+S+D
+        combo_dollar   { timeout-ms = <35>; key-positions = <4 26 27>;   bindings = <&kp DLLR>;
+        }; // R+X+C
+        combo_at       { timeout-ms = <35>; key-positions = <2 15 16>;   bindings = <&kp AT>;
+        }; // W+D+F
+        combo_amp      { timeout-ms = <35>; key-positions = <15 17>;     bindings = <&kp AMPS>;
+        }; // D+G
+        combo_star     { timeout-ms = <35>; key-positions = <27 28 29>;  bindings = <&kp STAR>;
+        }; // C+V+B
+        combo_equal    { timeout-ms = <35>; key-positions = <4 5>;       bindings = <&kp EQUAL>;
+        }; // R+T
+        combo_minus    { timeout-ms = <35>; key-positions = <16 17>;     bindings = <&kp MINUS>;
+        }; // F+G
+        combo_under    { timeout-ms = <35>; key-positions = <28 29>;     bindings = <&kp UNDER>;
+        }; // V+B
+        combo_plus     { timeout-ms = <35>; key-positions = <15 16 17>;  bindings = <&kp PLUS>;
+        }; // D+F+G
 
-        // ── Español — AltGr+letra (requiere layout "US International") ────
-        // Equivalente al SS_RALT() del QMK original
-        combo_tilde_a  { timeout-ms = <35>; key-positions = <13 25>;     bindings = <&kp RA(A)>; };   // A+Z → á
-        combo_tilde_e  { timeout-ms = <50>; key-positions = <3 15>;      bindings = <&kp RA(E)>; };   // E+D → é
-        combo_tilde_i  { timeout-ms = <35>; key-positions = <8 20>;      bindings = <&kp RA(I)>; };   // I+K → í
-        combo_tilde_o  { timeout-ms = <35>; key-positions = <9 21>;      bindings = <&kp RA(O)>; };   // O+L → ó
-        combo_tilde_u  { timeout-ms = <35>; key-positions = <7 19>;      bindings = <&kp RA(U)>; };   // U+J → ú
-        combo_enie     { timeout-ms = <35>; key-positions = <19 30>;     bindings = <&kp RA(N)>; };   // J+N → ñ
+        // ── Español — dead acute + vocal ──────────────────────────────────
+        // Win: activar "United States-International" en configuración de idioma
+        // Mac: activar "ABC Extended" o instalar "US International PC"
+        combo_tilde_a  { timeout-ms = <35>; key-positions = <13 25>;     bindings = <&accent_a>;
+        }; // A+Z → á
+        combo_tilde_e  { timeout-ms = <50>; key-positions = <3 15>;      bindings = <&accent_e>;
+        }; // E+D → é
+        combo_tilde_i  { timeout-ms = <35>; key-positions = <8 20>;      bindings = <&accent_i>;
+        }; // I+K → í
+        combo_tilde_o  { timeout-ms = <35>; key-positions = <9 21>;      bindings = <&accent_o>;
+        }; // O+L → ó
+        combo_tilde_u  { timeout-ms = <35>; key-positions = <7 19>;      bindings = <&accent_u>;
+        }; // U+J → ú
+        combo_enie     { timeout-ms = <35>; key-positions = <19 30>;     bindings = <&kp RA(N)>;
+        }; // J+N → ñ (Win: US-Intl directo / Mac: necesita "US Intl PC")
 
         // ── Mouse buttons — cerca a los índices en ambos teclados ────────
         //
@@ -113,7 +164,7 @@
         //     LCLK : T(5)  + G(17)  columna índice arriba→home
         //     RCLK : G(17) + B(29)  columna índice home→abajo
         //     MCLK : G(17) + V(28)  diagonal índice home
-        //     BACK : T(5)  + F(16)  diagonal índice arriba
+        //     ´    : F(16) + T(5)   dead acute (reemplaza BACK izq)
         //     FWD  : F(16) + B(29)  diagonal índice home→abajo
         //
         //   DERECHO  (zona índice der: H=18 J=19 K=20 Y=6 U=7)
@@ -123,22 +174,36 @@
         //     BACK : U(7)  + H(18)  diagonal índice arriba→home
         //     FWD  : Y(6)  + J(19)  diagonal índice arriba→home
         //
-        combo_mouse_lclk_l { timeout-ms = <35>; key-positions = <5 17>;  bindings = <&mkp LCLK>; };  // T+G (izq)
-        combo_mouse_rclk_l { timeout-ms = <35>; key-positions = <17 29>; bindings = <&mkp RCLK>; };  // G+B (izq)
-        combo_mouse_mclk_l { timeout-ms = <35>; key-positions = <17 28>; bindings = <&mkp MCLK>; };  // G+V (izq)
-        combo_mouse_back_l { timeout-ms = <35>; key-positions = <5 16>;  bindings = <&mkp MB4>; };   // T+F (izq) → atrás
-        combo_mouse_fwd_l  { timeout-ms = <35>; key-positions = <16 29>; bindings = <&mkp MB5>; };   // F+B (izq) → adelante
-        combo_mouse_lclk_r { timeout-ms = <35>; key-positions = <18 19>; bindings = <&mkp LCLK>; };  // H+J (der)
-        combo_mouse_rclk_r { timeout-ms = <35>; key-positions = <19 20>; bindings = <&mkp RCLK>; };  // J+K (der)
-        combo_mouse_mclk_r { timeout-ms = <35>; key-positions = <18 20>; bindings = <&mkp MCLK>; };  // H+K (der)
-        combo_mouse_back_r { timeout-ms = <35>; key-positions = <7 18>;  bindings = <&mkp MB4>; };   // U+H (der) → atrás
-        combo_mouse_fwd_r  { timeout-ms = <35>; key-positions = <6 19>;  bindings = <&mkp MB5>; };   // Y+J (der) → adelante
+        combo_mouse_lclk_l { timeout-ms = <35>; key-positions = <5 17>;  bindings = <&mkp LCLK>;
+        }; // T+G (izq)
+        combo_mouse_rclk_l { timeout-ms = <35>; key-positions = <17 29>; bindings = <&mkp RCLK>;
+        }; // G+B (izq)
+        combo_mouse_mclk_l { timeout-ms = <35>; key-positions = <17 28>; bindings = <&mkp MCLK>;
+        }; // G+V (izq)
+        combo_dead_acute   { timeout-ms = <35>; key-positions = <5 16>;  bindings = <&kp RA(SQT)>;
+        }; // F+T → ´ dead acute (Win: US-International / Mac: ABC-Extended o US-Intl-PC)
+        combo_mouse_fwd_l  { timeout-ms = <35>; key-positions = <16 29>; bindings = <&mkp MB5>;
+        }; // F+B (izq) → adelante
+        combo_mouse_lclk_r { timeout-ms = <35>; key-positions = <18 19>; bindings = <&mkp LCLK>;
+        }; // H+J (der)
+        combo_mouse_rclk_r { timeout-ms = <35>; key-positions = <19 20>; bindings = <&mkp RCLK>;
+        }; // J+K (der)
+        combo_mouse_mclk_r { timeout-ms = <35>; key-positions = <18 20>; bindings = <&mkp MCLK>;
+        }; // H+K (der)
+        combo_mouse_back_r { timeout-ms = <35>; key-positions = <7 18>;  bindings = <&mkp MB4>;
+        }; // U+H (der) → atrás
+        combo_mouse_fwd_r  { timeout-ms = <35>; key-positions = <6 19>;  bindings = <&mkp MB5>;
+        }; // Y+J (der) → adelante
 
         // ── Misc — macros de private.dtsi ─────────────────────────────────
-        combo_email_gmail { timeout-ms = <50>; key-positions = <13 14 15 16>; bindings = <&macro_email_gmail>; }; // A+S+D+F
-        combo_email_work  { timeout-ms = <50>; key-positions = <18 19 20 21>; bindings = <&macro_email_work>; };  // H+J+K+L
-        combo_username    { timeout-ms = <50>; key-positions = <4 7 14>;      bindings = <&macro_username>; };    // R+U+S
-        combo_password    { timeout-ms = <50>; key-positions = <2 10>;        bindings = <&macro_password>; };    // W+P
+        combo_email_gmail { timeout-ms = <50>; key-positions = <13 14 15 16>; bindings = <&macro_email_gmail>;
+        }; // A+S+D+F
+        combo_email_work  { timeout-ms = <50>; key-positions = <18 19 20 21>; bindings = <&macro_email_work>;
+        }; // H+J+K+L
+        combo_username    { timeout-ms = <50>; key-positions = <4 7 14>;      bindings = <&macro_username>;
+        }; // R+U+S
+        combo_password    { timeout-ms = <50>; key-positions = <2 10>;        bindings = <&macro_password>;
+        }; // W+P
     };
 
     behaviors {
@@ -263,82 +328,146 @@
                   <&kp TAB>,
                   <&macro_release &kp LALT>;
         };
+
+        // ── Acentos españoles: dead acute (RA(SQT)) + vocal ──────────────
+        // Win: "United States-International" | Mac: "ABC Extended" / "US Intl PC"
+        accent_a: accent_a {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp RA(SQT) &kp A>;
+        };
+        accent_e: accent_e {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp RA(SQT) &kp E>;
+        };
+        accent_i: accent_i {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp RA(SQT) &kp I>;
+        };
+        accent_o: accent_o {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp RA(SQT) &kp O>;
+        };
+        accent_u: accent_u {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp RA(SQT) &kp U>;
+        };
     };
 
-    keymap {
-        compatible = "zmk,keymap";
+keymap {
+    compatible = "zmk,keymap";
 
-        // ── Capa 0: QWERTY ────────────────────────────────────────────────
-        // Thumbs equiv. Corne:    … SPC  MO1 | MO2  ENT …
-        // Extras cmd (CCK-BALL):  CTL WIN ALT \ | RALT ← ↓ →
-        QWERTY {
-            bindings = <
-&kp TAB     &kp Q    &kp W    &kp E            &kp R      &kp T    &kp Y    &kp U      &kp I      &kp O           &kp P        &bspc_del
-&kp ESC     &kp A    &kp S    &kp D            &kp F      &kp G    &kp H    &kp J      &kp K      &kp L           &td_colon    &td_quote
-&kp LSHIFT  &kp Z    &kp X    &kp C            &kp V      &kp B    &kp N    &kp M      &kp COMMA  &kp DOT         &kp UP       &kp FSLH
-&kp LCTRL   &kp LWIN &kp LALT &kp NON_US_BSLH  &kp SPACE  &mo 1    &mo 2    &kp ENTER  &kp RALT   &kp LEFT        &kp DOWN     &kp RIGHT
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_vertical_encoder>;
+    // ╭────────────────────────── IZQUIERDA ──────────────────────────╮ ╭───────────────────────── DERECHA ─────────────────────────╮
+        // │ ESC   Q    W    E    R    T                                  │ │ Y    U    I    O    P    BSPC                         │
+        // │ TAB   A    S    D    F    G                                  │ │ H    J    K    L    ;    '                            │
+        // │ LSH   Z    X    C    V    B                                  │ │ N    M    ,    .    ↑    /                            │
+        // │ CTL   WIN  ALT  MO2  MO1  SPC                                │ │ ENT  MO1  MO2  ←    ↓    →                            │
+        // ╰──────────────────────────────────────────────────────────────╯ ╰───────────────────────────────────────────────────────╯
+        //
+        // Thumbs (centro):   MO2  MO1  SPC | ENT  MO1  MO2
+        // Extras:            CTL WIN ALT   | RALT ← ↓ →
+        // ──────────────────────── CAPA 0: QWERTY ────────────────────────
+    QWERTY {
+        bindings = <
+&kp ESC    &kp Q    &kp W    &kp E    &kp R    &kp T      &kp Y    &kp U    &kp I    &kp O    &kp P        &bspc_del
+&kp TAB    &kp A    &kp S    &kp D    &kp F    &kp G      &kp H    &kp J    &kp K    &kp L    &td_colon    &td_quote
+&kp LSHIFT &kp Z    &kp X    &kp C    &kp V    &kp B      &kp N    &kp M    &kp COMMA &dev_home &kp UP     &dev_end
+&kp LCTRL  &kp LWIN &kp LALT &mo 2    &mo 1    &kp SPACE  &kp ENTER &mo 1   &mo 2    &kp LEFT  &kp DOWN   &kp RIGHT
+        >;
+
+        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_vertical_encoder>;
         };
 
-        // ── Capa 1: Navegación (izq) + Numpad (der) ──────────────────────
-        // Equiv. QMK layer 1: HOME/UP/END/arrows izq, numpad der
-        // Thumbs: …SPC MO1(hold)… | …MO2(hold) ENT…  → trans
-        NAV_NUM {
-            bindings = <
-&none       &dev_home  &kp UP    &dev_end   &none     &kp KP_NUM    &none  &kp KP_N7  &kp KP_N8  &kp KP_N9  &none  &none
-&none       &kp LEFT   &kp DOWN  &kp RIGHT  &none     &none         &none  &kp KP_N4  &kp KP_N5  &kp KP_N6  &none  &none
-&kp LSHIFT  &wd_left   &kp PSCRN &wd_rght   &mo 3     &none         &none  &kp KP_N1  &kp KP_N2  &kp KP_N3  &none  &none
-&kp LCTRL   &kp LWIN   &kp LALT  &none      &trans    &trans        &trans &kp KP_N0  &kp INS    &trans      &trans &trans
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_horizontal_encoder>;
+
+    // ╭────────────────────── NAV (IZQ) ──────────────────────╮ ╭──────────────────── NUMPAD (DER) ─────────────────────╮
+        // │ HOME  ↑    END                                        │ │ NUM  7    8    9                                   │
+        // │ ←     ↓    →                                          │ │      4    5    6                                   │
+        // │ WORD← PSCR WORD→                                      │ │      1    2    3                                   │
+        // │ CTL   WIN  ALT                                        │ │ INS  0                                           │
+        // ╰───────────────────────────────────────────────────────╯ ╰────────────────────────────────────────────────────╯
+        // ──────────────────────── CAPA 1: NAV + NUM ────────────────────────
+    NAV_NUM {
+        bindings = <
+&none      &dev_home &kp UP    &dev_end &none     &kp KP_NUM   &kp KP_N7 &kp KP_N8 &kp KP_N9 &none   &none   &none
+&none      &kp LEFT  &kp DOWN  &kp RIGHT &none    &none        &kp KP_N4 &kp KP_N5 &kp KP_N6 &none   &none   &none
+&kp LSHIFT &wd_left  &kp PSCRN &wd_rght &none     &mo 3        &kp KP_N1 &kp KP_N2 &kp KP_N3 &none   &trans  &trans
+&kp LCTRL  &kp LWIN  &kp LALT  &none    &trans    &trans       &kp INS   &trans    &kp KP_N0 &trans  &trans  &trans
+        >;
+
+        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_horizontal_encoder>;
         };
 
-        // ── Capa 2: Números (izq) + F-keys (der) ─────────────────────────
-        // Equiv. QMK layer 2: 1-9/0 izq, F1-F12 der
-        // Thumbs: trans | KP_ENTER + trans
-        NUM_FN {
-            bindings = <
-&none       &kp N1   &kp N2    &kp N3    &none      &kp KP_NUM    &none  &kp F7  &kp F8  &kp F9   &kp F10  &kp F11
-&none       &kp N4   &kp N5    &kp N6    &none      &kp PSCRN     &none  &kp F4  &kp F5  &kp F6   &none    &kp F12
-&kp LSHIFT  &kp N7   &kp N8    &kp N9    &kp N0     &kp PAUSE_BREAK  &none  &kp F1  &kp F2  &kp F3   &none    &none
-&kp LCTRL   &kp LWIN &kp LALT  &none     &none      &none         &kp KP_ENTER &none &none &trans   &trans   &trans
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+
+    // ╭──────────────────── NUMBERS (IZQ) ─────────────────────╮ ╭──────────────────── F-KEYS (DER) ────────────────────╮
+        // │ 1    2    3                                            │ │ F7   F8   F9   F10  F11                             │
+        // │ 4    5    6                                            │ │ F4   F5   F6        F12                             │
+        // │ 7    8    9    0                                       │ │ F1   F2   F3                                       │
+        // │ CTL  WIN  ALT                                          │ │ ENTER                                            │
+        // ╰────────────────────────────────────────────────────────╯ ╰────────────────────────────────────────────────────╯
+        // ──────────────────────── CAPA 2: NUM + FN ────────────────────────
+    NUM_FN {
+        bindings = <
+&none      &kp N1   &kp N2   &kp N3   &none   &kp KP_NUM       &none  &kp F7 &kp F8 &kp F9  &kp F10 &kp F11
+&none      &kp N4   &kp N5   &kp N6   &none   &kp PSCRN        &none  &kp F4 &kp F5 &kp F6  &none   &kp F12
+&kp LSHIFT &kp N7   &kp N8   &kp N9   &kp N0  &kp PAUSE_BREAK  &none  &kp F1 &kp F2 &kp F3  &none   &none
+&kp LCTRL  &kp LWIN &kp LALT &none    &none   &none            &kp KP_ENTER &none &none &trans &trans &trans
+        >;
+
+        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
-        // ── Capa 3: Bluetooth ─────────────────────────────────────────────
-        BT_layers {
-            bindings = <
-&bootloader  &none          &none       &none  &none  &none        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_SEL 5
-&none        &bt BT_CLR_ALL &bt BT_CLR  &none  &none  &bt BT_PRV   &none         &none         &none         &none         &none         &none
-&none        &none          &none       &none  &none  &bt BT_NXT   &none         &none         &none         &none         &none         &none
-&none        &none          &none       &none  &none  &none        &none         &none         &none         &none         &none         &bootloader
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+
+    // ──────────────────────── CAPA 3: BLUETOOTH ────────────────────────
+    BT_layers {
+        bindings = <
+&bootloader &none &none &none &none &none   &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5
+&none       &bt BT_CLR_ALL &bt BT_CLR &none &none &bt BT_PRV &none &none &none &none &none &none
+&none       &none &none &none &none &bt BT_NXT &none &none &none &none &none &none
+&none       &none &none &none &none &none     &none &none &none &none &none &bootloader
+        >;
+
+        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
-        // ── Capa 4: Scroll ────────────────────────────────────────────────
-        scroll-layers {
-            bindings = <
-&trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+
+    // ──────────────────────── CAPA 4: SCROLL ────────────────────────
+    scroll-layers {
+        bindings = <
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+        >;
+
+        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
-        // ── Capa 5: Snipe ─────────────────────────────────────────────────
-        snipe-layers {
-            bindings = <
-&trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans  &trans &trans &trans &trans &trans &trans
-            >;
-            sensor-bindings = <&scroll_vertical_encoder>,
-                             <&scroll_horizontal_encoder>;
+
+    // ──────────────────────── CAPA 5: SNIPE ────────────────────────
+    snipe-layers {
+        bindings = <
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
+        >;
+
+        sensor-bindings = <&scroll_vertical_encoder>,
+                          <&scroll_horizontal_encoder>;
         };
     };
 };
