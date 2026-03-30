@@ -26,7 +26,7 @@ Fila 3: 36=CTL 37=WIN 38=ALT 39=\ 40=SPC 41=MO1 | 42=MO2 43=ENT 44=RALT 45=← 4
 
 1. **Leer el keymap completo** antes de proponer cambios.
 2. **Verificar conflictos de combo**: dos combos no pueden tener exactamente los mismos `key-positions`.
-3. **Verificar `CONFIG_ZMK_COMBO_MAX`** en `config/cck_ball.conf` si se agregan combos. Actualmente 64.
+3. **No hay límite Kconfig de combos** en ZMK 0.3 — `CONFIG_ZMK_COMBO_MAX` no existe como símbolo. Los combos se compilan directamente desde DTS sin límite configurable.
 4. **No usar** `RA(A)`, `RA(E)`, `RA(I)`, `RA(O)`, `RA(U)` directamente para acentos — solo funciona en Windows US-Intl, falla en macOS estándar.
 
 ---
