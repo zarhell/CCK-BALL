@@ -62,7 +62,6 @@
 	y-input-code = <INPUT_REL_Y>;
 	swap-xy;
 	//invert-y;
-        automouse-layer = <4>;
     };
 };
 
@@ -114,8 +113,10 @@
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
+        // Activa capa 4 (scroll-layers) automáticamente al mover el trackball
+        automouse-layer = <4>;
 
-        // Capa 4 (scroll-layers): trackball hace scroll en lugar de mover cursor
+        // Capa 4 activa: trackball hace scroll en lugar de mover cursor
         scroller {
             layers = <4>;
             input-processors = <&zip_xy_to_scroll_mapper>;
