@@ -482,7 +482,7 @@ keymap {
     // ──────────────────────── CAPA 5: SNIPE ────────────────────────
     snipe-layers {
         bindings = <
-&trans &trans &trans &trans &trans &trans   &trans &trans &trans &ctrans &trans &trans
+&trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
