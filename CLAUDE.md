@@ -96,7 +96,7 @@ Los combos de acento usan macros con **dead acute** (`RA(SQT)`) + vocal.
 
 | Archivo | Propósito |
 |---------|-----------|
-| `config/cck_ball.keymap` | Keymap principal |
+| `config/cck_ball.keymap` | Keymap principal — encoders: izq=scroll, der=escritorios |
 | `config/cck_ball.conf` | Kconfig (BLE, COMBO_MAX, mouse) |
 | `config/private.dtsi` | Macros personales (email/user/pass) — NO commitear cambios |
 | `config/boards/shields/cck_ball/cck_ball.dtsi` | Hardware (matrix, encoders) |

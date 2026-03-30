@@ -1,4 +1,4 @@
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1000
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 800
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 12
 
 #include <input/processors.dtsi>
@@ -9,7 +9,7 @@
 #include <dt-bindings/zmk/pointing.h>
 #include "private.dtsi"
 
-&mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>;
+&mmv_input_listener { input-processors = <&zip_xy_scaler 1 1>;
 };
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>;
 };
@@ -22,7 +22,7 @@
 
 &mmv {
     time-to-max-speed-ms = <500>;
-    acceleration-exponent = <1>;
+    acceleration-exponent = <0>;
     trigger-period-ms = <16>;
 };
 
@@ -41,6 +41,15 @@
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
         bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
+        tap-ms = <100>;
+    };
+
+    // Cambiar escritorio — macOS: Ctrl+←/→ | Windows: Win+Ctrl+←/→
+    // Para Windows cambiar LC(LEFT)/LC(RIGHT) por LC(LG(LEFT))/LC(LG(RIGHT))
+    desk_encoder: desk_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp LC(LEFT)>, <&kp LC(RIGHT)>;
         tap-ms = <100>;
     };
 
@@ -389,7 +398,7 @@ keymap {
 &kp LCTRL  &kp LWIN &kp LALT &mo 2    &mo 1    &kp SPACE  &kp ENTER &mo 1   &mo 2    &kp LEFT  &kp DOWN   &kp RIGHT
         >;
 
-        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_vertical_encoder>;
+        sensor-bindings = <&scroll_vertical_encoder &desk_encoder>;
         };
 
 
@@ -408,7 +417,7 @@ keymap {
 &kp LCTRL  &kp LWIN  &kp LALT  &none    &trans    &trans       &kp INS   &trans    &kp KP_N0 &trans  &trans  &trans
         >;
 
-        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &scroll_horizontal_encoder>;
+        sensor-bindings = <&scroll_horizontal_encoder &desk_encoder>;
         };
 
 
@@ -427,7 +436,7 @@ keymap {
 &kp LCTRL  &kp LWIN &kp LALT &none    &none   &none            &kp KP_ENTER &none &none &trans &trans &trans
         >;
 
-        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        sensor-bindings = <&inc_dec_kp PG_UP PG_DN &desk_encoder>;
         };
 
 
@@ -440,7 +449,7 @@ keymap {
 &none       &none &none &none &none &none     &none &none &none &none &none &bootloader
         >;
 
-        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        sensor-bindings = <&inc_dec_kp PG_UP PG_DN &desk_encoder>;
         };
 
 
@@ -453,7 +462,7 @@ keymap {
 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
         >;
 
-        sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        sensor-bindings = <&inc_dec_kp PG_UP PG_DN &desk_encoder>;
         };
 
 
@@ -466,8 +475,8 @@ keymap {
 &trans &trans &trans &trans &trans &trans   &trans &trans &trans &trans &trans &trans
         >;
 
-        sensor-bindings = <&scroll_vertical_encoder>,
-                          <&scroll_horizontal_encoder>;
+        sensor-bindings = <&scroll_horizontal_encoder>,
+                          <&scroll_vertical_encoder>;
         };
     };
 };
