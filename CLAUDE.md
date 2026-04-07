@@ -13,11 +13,14 @@ Configuración en `config/cck_ball.keymap` + `config/cck_ball.conf`.
 
 ## Mapa de posiciones (48 teclas) — CRÍTICO
 
+> **Nota**: pos 0 tiene `&kp ESC` en el keymap (tecla física etiquetada TAB).
+> pos 12 tiene `&lt 6 TAB` (tecla física etiquetada ESC). Usar posiciones, no etiquetas físicas.
+
 ```
-Fila 0:  0=TAB  1=Q   2=W   3=E   4=R   5=T  |  6=Y   7=U   8=I   9=O  10=P  11=BSPC
-Fila 1: 12=ESC 13=A  14=S  15=D  16=F  17=G  | 18=H  19=J  20=K  21=L  22=;  23='"
+Fila 0:  0=ESC  1=Q   2=W   3=E   4=R   5=T  |  6=Y   7=U   8=I   9=O  10=P  11=BSPC
+Fila 1: 12=TAB 13=A  14=S  15=D  16=F  17=G  | 18=H  19=J  20=K  21=L  22=;  23='"
 Fila 2: 24=LSH 25=Z  26=X  27=C  28=V  29=B  | 30=N  31=M  32=,  33=.  34=UP 35=/
-Fila 3: 36=CTL 37=WIN 38=ALT 39=\ 40=SPC 41=MO1 | 42=MO2 43=ENT 44=RALT 45=← 46=↓ 47=→
+Fila 3: 36=MO2 37=CTL 38=ALT 39=GUI 40=MO1 41=SPC | 42=ENT 43=MO1 44=MO2 45=← 46=↓ 47=→
 ```
 
 ---
@@ -42,7 +45,7 @@ Los combos de acento usan macros con **dead acute** (`RA(SQT)`) + vocal.
 
 - `RA(SQT)` = dead acute en ambos layouts anteriores.
 - `RA(N)` = ñ directo en Windows US-Intl; macOS necesita "US International PC".
-- Combos: A+Z=á, E+D=é, I+K=í, O+L=ó, U+J=ú, J+N=ñ.
+- Combos: A+X=á, E+F=é, I+J=í, O+K=ó, U+H=ú, J+N=ñ.
 
 ---
 
@@ -50,11 +53,11 @@ Los combos de acento usan macros con **dead acute** (`RA(SQT)`) + vocal.
 
 | Combo | Posiciones | Resultado |
 |-------|-----------|-----------|
-| T+SPC | 5+40 | DEL |
-| G+SPC | 17+40 | BSPC |
-| B+SPC | 29+40 | ENTER |
+| T+SPC | 5+41 | DEL |
+| G+SPC | 17+41 | BSPC |
+| B+SPC | 29+41 | ENTER |
 | B+ENT | 29+43 | ENTER |
-| F+T | 16+5 | dead acute ´ |
+| F+T | 5+16 | dead acute ´ |
 | E+T | 3+5 | sel_word |
 | R+T | 4+5 | = |
 | F+G | 16+17 | - |
@@ -65,17 +68,14 @@ Los combos de acento usan macros con **dead acute** (`RA(SQT)`) + vocal.
 
 | Combo | Posiciones | Acción |
 |-------|-----------|--------|
-| T+G (izq) | 5+17 | LCLK |
-| G+B (izq) | 17+29 | RCLK |
+| ESC+Q (izq) | 0+1 | LCLK |
+| TAB+A (izq) | 12+13 | RCLK |
 | G+V (izq) | 17+28 | MCLK |
-| F+B (izq) | 16+29 | FWD (MB5) |
 | H+J (der) | 18+19 | LCLK |
 | J+K (der) | 19+20 | RCLK |
 | H+K (der) | 18+20 | MCLK |
-| U+H (der) | 7+18 | BACK (MB4) |
 | Y+J (der) | 6+19 | FWD (MB5) |
-
-> BACK izquierdo (T+F) fue reemplazado por dead acute ´.
+| U+H (der) | 7+18 | ú (acento) |
 
 ---
 
@@ -84,11 +84,12 @@ Los combos de acento usan macros con **dead acute** (`RA(SQT)`) + vocal.
 | ID | Nombre | Activación |
 |----|--------|-----------|
 | 0 | QWERTY | Base |
-| 1 | NAV_NUM | MO1 (pos 41/pos 43 zona) |
-| 2 | NUM_FN | MO2 |
-| 3 | BT_layers | `mo 3` desde NAV_NUM (B=pos29 en layer 1) |
-| 4 | scroll-layers | reservada |
-| 5 | snipe-layers | reservada |
+| 1 | NAV_NUM | MO1 (pos 40/pos 43) |
+| 2 | NUM_FN | MO2 (pos 36/pos 44) |
+| 3 | BT_layers | `mo 3` (desde NAV_NUM layer 1, ya no accesible por B+MO1) |
+| 4 | scroll-layers | toggle MO2+MO1 (pos 36+40) |
+| 5 | snipe-layers | toggle MO1+MO2 der (pos 43+44) |
+| 6 | MIRROR | hold TAB (pos 12) — espejo lado derecho en mano izquierda |
 
 ---
 
