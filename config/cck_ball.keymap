@@ -392,9 +392,9 @@ keymap {
     QWERTY {
         bindings = <
             &kp ESC    &kp Q    &kp W    &kp E    &kp R    &kp T      &kp Y    &kp U    &kp I    &kp O    &kp P        &bspc_del
-            &lt 6 TAB    &kp A    &kp S    &kp D    &kp F    &kp G      &kp H    &kp J    &kp K    &kp L    &td_colon    &td_quote
+            &kp TAB    &kp A    &kp S    &kp D    &kp F    &kp G      &kp H    &kp J    &kp K    &kp L    &td_colon    &td_quote
             &kp LSHIFT &kp Z    &kp X    &kp C    &kp V    &kp B      &kp N    &kp M    &kp PSCRN &dev_home &kp UP     &dev_end
-            &mo 2  &kp LWIN &kp LALT &kp LCTRL    &mo 1    &kp SPACE  &kp ENTER &mo 1   &mo 2    &kp LEFT  &kp DOWN   &kp RIGHT
+            &mo 2  &kp LWIN &kp LALT &kp LCTRL    &mo 1    &lt 6 SPC  &kp ENTER &mo 1   &mo 2    &kp LEFT  &kp DOWN   &kp RIGHT
                     >;
 
                     sensor-bindings = <&scroll_vertical_encoder &desk_encoder>;
