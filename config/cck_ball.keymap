@@ -212,10 +212,7 @@
         }; // MO2+MO1 izq → toggle scroll-layer (trackball scrollea)
         combo_snipe_tog  { timeout-ms = <50>; key-positions = <43 44>;   bindings = <&tog 5>;
         }; // MO1+MO2 der → toggle snipe-layer (trackball lento)
-        combo_bt_tog     { timeout-ms = <50>; key-positions = <5 29>;   bindings = <&tog 3>;
-        }; // T+B → toggle BT_layers
-        combo_mirror_tog { timeout-ms = <50>; key-positions = <36 37>;  bindings = <&tog 6>;
-        }; // MO2+CTRL → toggle MIRROR layer
+        // BT y MIRROR: acceso via bindings directos en capas (combos nuevos rompen ZMK 0.3)
 
         // ── Misc — macros de private.dtsi ─────────────────────────────────
         combo_email_gmail { timeout-ms = <50>; key-positions = <13 14 15 16>; bindings = <&macro_email_gmail>;
@@ -443,7 +440,7 @@ keymap {
         // ──────────────────────── CAPA 2: NUM + FN ────────────────────────
     NUM_FN {
         bindings = <
-&none      &kp N7   &kp N8   &kp N9   &kp N0  &kp KP_NUM       &kp F1  &kp F2  &kp F3  &kp F4   &kp F5  &kp F6
+&mo 3      &kp N7   &kp N8   &kp N9   &kp N0  &kp KP_NUM       &kp F1  &kp F2  &kp F3  &kp F4   &kp F5  &kp F6
 &none      &kp N4   &kp N5   &kp N6   &none   &kp PSCRN        &kp F7  &kp F8  &kp F9  &kp F10  &kp F11 &kp F12
 &trans     &kp N1   &kp N2   &kp N3   &none   &kp PAUSE_BREAK  &none   &none   &none   &none    &none   &none
 &none      &none    &none &none    &none   &none            &kp KP_ENTER &none &none &trans &trans &trans
