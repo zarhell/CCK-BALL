@@ -11,7 +11,7 @@
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 1 1>;
 };
-&msc_input_listener { input-processors = <&zip_scroll_scaler 1 1>;
+&msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>;
 };
 
 &msc {
@@ -57,7 +57,7 @@
     // Fila 0:  0=TAB  1=Q   2=W   3=E   4=R   5=T  |  6=Y   7=U   8=I   9=O  10=P  11=BSPC
     // Fila 1: 12=ESC 13=A  14=S  15=D  16=F  17=G  | 18=H  19=J  20=K  21=L  22=;  23='"
     // Fila 2: 24=LSH 25=Z  26=X  27=C  28=V  29=B  | 30=N  31=M  32=,  33=.  34=UP 35=/
-    // Fila 3: 36=CTL 37=WIN 38=ALT 39=\ 40=SPC 41=MO1 | 42=MO2 43=ENT 44=RALT 45=← 46=↓ 47=→
+    // Fila 3: 36=CTL 37=WIN 38=ALT 39=MO2 40=MO1 41=SPC | 42=ENT 43=MO1r 44=MO2r 45=← 46=↓ 47=→
     //
     // Thumbs (equiv. Corne):  SPC(40) MO1(41) | MO2(42) ENT(43)
     // Extras CCK-BALL (cmd):  CTL(36) WIN(37) ALT(38) | RALT(44) ←(45) ↓(46) →(47)
@@ -70,11 +70,11 @@
         }; // E+T → sel. palabra
         combo_enter    { timeout-ms = <35>; key-positions = <29 43>;     bindings = <&kp RET>;
         }; // B+ENT
-        combo_enter_spc { timeout-ms = <35>; key-positions = <29 41>;   bindings = <&kp RET>;
+        combo_enter_spc { timeout-ms = <35>; key-positions = <29 40>;   bindings = <&kp RET>;
         }; // B+SPC → ENTER
-        combo_bspc     { timeout-ms = <35>; key-positions = <17 41>;     bindings = <&kp BSPC>;
+        combo_bspc     { timeout-ms = <35>; key-positions = <17 40>;     bindings = <&kp BSPC>;
         }; // G+SPC
-        combo_del      { timeout-ms = <35>; key-positions = <5 41>;      bindings = <&kp DEL>;
+        combo_del      { timeout-ms = <35>; key-positions = <5 40>;      bindings = <&kp DEL>;
         }; // T+SPC
         combo_space    { timeout-ms = <35>; key-positions = <30 43>;     bindings = <&kp SPACE>;
         }; // N+ENT
@@ -89,18 +89,19 @@
         combo_semi     { timeout-ms = <35>; key-positions = <16 29>;     bindings = <&kp SEMI>;
         }; // F+B
 
-        // ── Brackets (ancla ESC=pos 0) ────────────────────────────────────
-        // ESC+Q (0+1) liberado → ahora es LCLK izquierdo
+        // ── Brackets (ancla TAB=pos 0) ────────────────────────────────────
+        combo_lbrc     { timeout-ms = <35>; key-positions = <0 1>;       bindings = <&kp LBKT>;
+        }; // TAB+Q → [
         combo_rbrc     { timeout-ms = <35>; key-positions = <0 2>;       bindings = <&kp RBKT>;
-        }; // ESC+W → ]
+        }; // TAB+W → ]
         combo_lcbr     { timeout-ms = <35>; key-positions = <0 13>;      bindings = <&kp LBRC>;
-        }; // ESC+A → {
+        }; // TAB+A → {
         combo_rcbr     { timeout-ms = <35>; key-positions = <0 14>;      bindings = <&kp RBRC>;
-        }; // ESC+S → }
+        }; // TAB+S → }
         combo_lprn     { timeout-ms = <35>; key-positions = <0 25>;      bindings = <&kp LPAR>;
-        }; // ESC+Z → (
+        }; // TAB+Z → (
         combo_rprn     { timeout-ms = <35>; key-positions = <0 26>;      bindings = <&kp RPAR>;
-        }; // ESC+X → )
+        }; // TAB+X → )
 
         // ── Símbolos ──────────────────────────────────────────────────────
         combo_slash    { timeout-ms = <35>; key-positions = <4 15 26>;   bindings = <&kp FSLH>;
@@ -117,7 +118,7 @@
         }; // E+F+C
         combo_grave    { timeout-ms = <35>; key-positions = <4 17>;      bindings = <&kp GRAVE>;
         }; // R+G
-        combo_acute    { timeout-ms = <50>; key-positions = <4 15>;      bindings = <&kp RA(SQT)>;
+        combo_acute    { timeout-ms = <35>; key-positions = <4 15>;      bindings = <&kp RA(SQT)>;
         }; // R+D → ´ (AltGr+')
         combo_comment  { timeout-ms = <35>; key-positions = <15 16 26>;  bindings = <&dev_comment>;
         }; // D+F+X → Ctrl+/
@@ -133,7 +134,7 @@
         }; // W+E+F
         combo_ques     { timeout-ms = <35>; key-positions = <4 14 15>;   bindings = <&kp QMARK>;
         }; // R+S+D
-        combo_dollar   { timeout-ms = <35>; key-positions = <4 26 27>;   bindings = <&kp DLLR>;
+        combo_dollar   { timeout-ms = <35>; key-positions = <16 26 27>;   bindings = <&kp DLLR>;
         }; // R+X+C
         combo_at       { timeout-ms = <35>; key-positions = <2 15 16>;   bindings = <&kp AT>;
         }; // W+D+F
@@ -153,49 +154,52 @@
         // ── Español — dead acute + vocal ──────────────────────────────────
         // Win: activar "United States-International" en configuración de idioma
         // Mac: activar "ABC Extended" o instalar "US International PC"
-        combo_tilde_a  { timeout-ms = <35>; key-positions = <13 26>;     bindings = <&accent_a>;
-        }; // A+X → á
-        combo_tilde_e  { timeout-ms = <50>; key-positions = <3 16>;      bindings = <&accent_e>;
-        }; // E+F → é
-        combo_tilde_i  { timeout-ms = <35>; key-positions = <8 19>;      bindings = <&accent_i>;
-        }; // I+J → í
-        combo_tilde_o  { timeout-ms = <35>; key-positions = <9 20>;      bindings = <&accent_o>;
-        }; // O+K → ó
-        combo_tilde_u  { timeout-ms = <35>; key-positions = <7 18>;      bindings = <&accent_u>;
-        }; // U+H → ú
+        combo_tilde_a  { timeout-ms = <35>; key-positions = <13 25>;     bindings = <&accent_a>;
+        }; // A+Z → á
+        combo_tilde_e  { timeout-ms = <50>; key-positions = <3 15>;      bindings = <&accent_e>;
+        }; // E+D → é
+        combo_tilde_i  { timeout-ms = <35>; key-positions = <8 20>;      bindings = <&accent_i>;
+        }; // I+K → í
+        combo_tilde_o  { timeout-ms = <35>; key-positions = <9 21>;      bindings = <&accent_o>;
+        }; // O+L → ó
+        combo_tilde_u  { timeout-ms = <35>; key-positions = <7 19>;      bindings = <&accent_u>;
+        }; // U+J → ú
         combo_enie     { timeout-ms = <35>; key-positions = <19 30>;     bindings = <&kp RA(N)>;
         }; // J+N → ñ (Win: US-Intl directo / Mac: necesita "US Intl PC")
 
-        // ── Mouse buttons ─────────────────────────────────────────────────
+        // ── Mouse buttons — cerca a los índices en ambos teclados ────────
         //
-        //   IZQUIERDO
-        //     LCLK : ESC(0) + Q(1)    esquina exterior fila 0
-        //     RCLK : TAB(12)+ A(13)   esquina exterior fila 1
-        //     MCLK : G(17)  + V(28)   diagonal índice home
-        //     ´    : F(16)  + T(5)    dead acute
-        //     ;    : F(16)  + B(29)
+        //   IZQUIERDO  (zona índice izq: F=16 G=17 T=5 V=28 B=29)
+        //     LCLK : T(5)  + G(17)  columna índice arriba→home
+        //     RCLK : G(17) + B(29)  columna índice home→abajo
+        //     MCLK : G(17) + V(28)  diagonal índice home
+        //     ´    : F(16) + T(5)   dead acute
+        //     ;    : F(16) + B(29)  (reemplaza FWD izq)
         //
         //   DERECHO  (zona índice der: H=18 J=19 K=20 Y=6 U=7)
-        //     LCLK : H(18) + J(19)   home row adyacente
-        //     RCLK : J(19) + K(20)   home row índice+medio
-        //     MCLK : H(18) + K(20)   pinza índice+medio
-        //     FWD  : Y(6)  + J(19)   diagonal índice arriba→home
-        //     (U+H liberado → ahora es combo ú)
+        //     LCLK : H(18) + J(19)  home row adyacente
+        //     RCLK : J(19) + K(20)  home row índice+medio
+        //     MCLK : H(18) + K(20)  pinza índice+medio
+        //     BACK : U(7)  + H(18)  diagonal índice arriba→home
+        //     FWD  : Y(6)  + J(19)  diagonal índice arriba→home
         //
-        combo_mouse_lclk_l { timeout-ms = <35>; key-positions = <0 1>;   bindings = <&mkp LCLK>;
-        }; // ESC+Q (izq)
-        combo_mouse_rclk_l { timeout-ms = <35>; key-positions = <12 13>; bindings = <&mkp RCLK>;
-        }; // TAB+A (izq)
+        combo_mouse_lclk_l { timeout-ms = <35>; key-positions = <5 17>;  bindings = <&mkp LCLK>;
+        }; // T+G (izq)
+        combo_mouse_rclk_l { timeout-ms = <35>; key-positions = <17 29>; bindings = <&mkp RCLK>;
+        }; // G+B (izq)
         combo_mouse_mclk_l { timeout-ms = <35>; key-positions = <17 28>; bindings = <&mkp MCLK>;
         }; // G+V (izq)
         combo_dead_acute   { timeout-ms = <35>; key-positions = <5 16>;  bindings = <&kp RA(SQT)>;
         }; // F+T → ´ dead acute (Win: US-International / Mac: ABC-Extended o US-Intl-PC)
+        // F+B (izq) liberado → ahora es combo_semi (;)
         combo_mouse_lclk_r { timeout-ms = <35>; key-positions = <18 19>; bindings = <&mkp LCLK>;
         }; // H+J (der)
         combo_mouse_rclk_r { timeout-ms = <35>; key-positions = <19 20>; bindings = <&mkp RCLK>;
         }; // J+K (der)
         combo_mouse_mclk_r { timeout-ms = <35>; key-positions = <18 20>; bindings = <&mkp MCLK>;
         }; // H+K (der)
+        combo_mouse_back_r { timeout-ms = <35>; key-positions = <7 18>;  bindings = <&mkp MB4>;
+        }; // U+H (der) → atrás
         combo_mouse_fwd_r  { timeout-ms = <35>; key-positions = <6 19>;  bindings = <&mkp MB5>;
         }; // Y+J (der) → adelante
 
@@ -208,11 +212,10 @@
         }; // W+A+D → Cmd+↑ (Mission Control)
 
         // ── Scroll / Snipe ────────────────────────────────────────────────
-        combo_scroll_tog { timeout-ms = <50>; key-positions = <36 40>;   bindings = <&tog 4>;
+        combo_scroll_tog { timeout-ms = <50>; key-positions = <39 40>;   bindings = <&tog 4>;
         }; // MO2+MO1 izq → toggle scroll-layer (trackball scrollea)
         combo_snipe_tog  { timeout-ms = <50>; key-positions = <43 44>;   bindings = <&tog 5>;
         }; // MO1+MO2 der → toggle snipe-layer (trackball lento)
-        // BT y MIRROR: acceso via bindings directos en capas (combos nuevos rompen ZMK 0.3)
 
         // ── Misc — macros de private.dtsi ─────────────────────────────────
         combo_email_gmail { timeout-ms = <50>; key-positions = <13 14 15 16>; bindings = <&macro_email_gmail>;
@@ -319,17 +322,17 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
-                = <&macro_press &kp LALT>,
+                = <&macro_press &kp LCTRL>,
                   <&kp LEFT>,
-                  <&macro_release &kp LALT>;
+                  <&macro_release &kp LCTRL>;
         };
         wd_rght: wd_rght {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
-                = <&macro_press &kp LALT>,
+                = <&macro_press &kp LCTRL>,
                   <&kp RIGHT>,
-                  <&macro_release &kp LALT>;
+                  <&macro_release &kp LCTRL>;
         };
         dev_comment: dev_comment {
             compatible = "zmk,behavior-macro";
@@ -403,9 +406,9 @@ keymap {
     QWERTY {
         bindings = <
 &kp ESC    &kp Q    &kp W    &kp E    &kp R    &kp T      &kp Y    &kp U    &kp I    &kp O    &kp P        &bspc_del
-&kp TAB  &kp A    &kp S    &kp D    &kp F    &kp G      &kp H    &kp J    &kp K    &kp L    &td_colon    &kp RA(SQT)
+&kp TAB    &kp A    &kp S    &kp D    &kp F    &kp G      &kp H    &kp J    &kp K    &kp L    &td_colon    &td_quote
 &kp LSHIFT &kp Z    &kp X    &kp C    &kp V    &kp B      &kp N    &kp M    &kp COMMA &dev_home &kp UP     &dev_end
-&mo 2      &kp LGUI &kp LALT &kp LCTRL &mo 1   &kp SPACE  &kp ENTER &mo 1   &mo 2    &kp LEFT  &kp DOWN   &kp RIGHT
+&mo 2  &kp LWIN &kp LALT &kp LCTRL    &mo 1    &kp SPACE  &kp ENTER &mo 1   &mo 2    &kp LEFT  &kp DOWN   &kp RIGHT
         >;
 
         sensor-bindings = <&scroll_vertical_encoder &desk_encoder>;
@@ -421,10 +424,10 @@ keymap {
         // ──────────────────────── CAPA 1: NAV + NUM ────────────────────────
     NAV_NUM {
         bindings = <
-&none      &dev_home &kp UP    &dev_end &none     &kp KP_NUM        &kp KP_N7 &kp KP_N8 &kp KP_N9 &none   &none   &none
-&none      &kp LEFT  &kp DOWN  &kp RIGHT &none    &kp LC(LEFT)      &kp KP_N4 &kp KP_N5 &kp KP_N6 &none   &none   &none
-&kp LSHIFT &wd_left  &kp LG(LS(N4)) &wd_rght &none &kp LC(RIGHT)   &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp DOT   &trans  &trans
-&none     &none      &none     &none    &trans    &trans            &kp INS   &trans    &kp KP_N0 &trans  &trans  &trans
+&none      &dev_home &kp UP    &dev_end &none     &kp KP_NUM   &kp KP_N7 &kp KP_N8 &kp KP_N9 &none   &none   &none
+&none      &kp LEFT  &kp DOWN  &kp RIGHT &none    &none        &kp KP_N4 &kp KP_N5 &kp KP_N6 &none   &none   &none
+&kp LSHIFT &wd_left  &kp PSCRN &wd_rght &none     &mo 3        &kp KP_N1 &kp KP_N2 &kp KP_N3 &none   &trans  &trans
+&kp LCTRL  &kp LWIN  &kp LALT  &none    &trans    &trans       &kp INS   &trans    &kp KP_N0 &trans  &trans  &trans
         >;
 
         sensor-bindings = <&scroll_horizontal_encoder &desk_encoder>;
@@ -432,18 +435,18 @@ keymap {
 
 
     // ╭──────────────────── NUMBERS (IZQ) ─────────────────────╮ ╭──────────────────── F-KEYS (DER) ────────────────────╮
-        // │ 7    8    9    0                                       │ │ F1   F2   F3   F4   F5   F6                        │
-        // │ 4    5    6                                            │ │ F7   F8   F9   F10  F11  F12                       │
-        // │ 1    2    3                                            │ │                                                    │
+        // │ 1    2    3                                            │ │ F7   F8   F9   F10  F11                             │
+        // │ 4    5    6                                            │ │ F4   F5   F6        F12                             │
+        // │ 7    8    9    0                                       │ │ F1   F2   F3                                       │
         // │ CTL  WIN  ALT                                          │ │ ENTER                                            │
         // ╰────────────────────────────────────────────────────────╯ ╰────────────────────────────────────────────────────╯
         // ──────────────────────── CAPA 2: NUM + FN ────────────────────────
     NUM_FN {
         bindings = <
-&mo 3      &kp N7   &kp N8   &kp N9   &kp N0  &kp KP_NUM       &kp F1  &kp F2  &kp F3  &kp F4   &kp F5  &kp F6
-&none      &kp N4   &kp N5   &kp N6   &none   &kp PSCRN        &kp F7  &kp F8  &kp F9  &kp F10  &kp F11 &kp F12
-&trans     &kp N1   &kp N2   &kp N3   &none   &kp PAUSE_BREAK  &none   &none   &none   &none    &none   &none
-&none      &none    &none &none    &none   &none            &kp KP_ENTER &none &none &trans &trans &trans
+&none      &kp N1   &kp N2   &kp N3   &none   &kp KP_NUM       &none  &kp F7 &kp F8 &kp F9  &kp F10 &kp F11
+&none      &kp N4   &kp N5   &kp N6   &none   &kp PSCRN        &none  &kp F4 &kp F5 &kp F6  &none   &kp F12
+&kp LSHIFT &kp N7   &kp N8   &kp N9   &kp N0  &kp PAUSE_BREAK  &none  &kp F1 &kp F2 &kp F3  &none   &none
+&kp LCTRL  &kp LWIN &kp LALT &none    &none   &none            &kp KP_ENTER &none &none &trans &trans &trans
         >;
 
         sensor-bindings = <&inc_dec_kp PG_UP PG_DN &desk_encoder>;
@@ -487,20 +490,6 @@ keymap {
 
         sensor-bindings = <&scroll_horizontal_encoder>,
                           <&scroll_vertical_encoder>;
-        };
-
-
-    // ──────────────────────── CAPA 6: ESPEJO (MIRROR) ────────────────────────
-    // Activar: mantener TAB (pos 12) → mano izquierda escribe teclas del lado derecho
-    MIRROR {
-        bindings = <
-&trans    &kp Y    &kp U    &kp I    &kp O    &kp P      &trans &trans &trans &trans &trans &trans
-&trans    &kp H    &kp J    &kp K    &kp L    &kp SEMI   &trans &trans &trans &trans &trans &trans
-&trans    &kp B    &kp N    &kp M    &trans   &trans     &trans &trans &trans &trans &trans &trans
-&trans    &trans   &trans   &trans   &trans   &trans     &trans &trans &trans &trans &trans &trans
-        >;
-
-        sensor-bindings = <&scroll_vertical_encoder &desk_encoder>;
         };
     };
 };
