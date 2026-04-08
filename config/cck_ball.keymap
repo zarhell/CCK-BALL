@@ -212,8 +212,8 @@
         }; // MO2+MO1 izq → toggle scroll-layer (trackball scrollea)
         combo_snipe_tog  { timeout-ms = <50>; key-positions = <43 44>;   bindings = <&tog 5>;
         }; // MO1+MO2 der → toggle snipe-layer (trackball lento)
-        combo_bt_tog     { timeout-ms = <50>; key-positions = <5 29>;   bindings = <&mo 3>;
-        }; // T+B → momentary BT_layers
+        // combo_bt_tog  deshabilitado — T+B era sospechoso de interferir con el arranque
+        // combo_bt_tog  { timeout-ms = <50>; key-positions = <5 29>;   bindings = <&mo 3>; };
 
         // ── Misc — macros de private.dtsi ─────────────────────────────────
         combo_email_gmail { timeout-ms = <50>; key-positions = <13 14 15 16>; bindings = <&macro_email_gmail>;
