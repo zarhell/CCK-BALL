@@ -1,5 +1,5 @@
 #define ZMK_POINTING_DEFAULT_MOVE_VAL 800
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 10
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 12
 
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -117,7 +117,7 @@
         }; // E+F+C
         combo_grave    { timeout-ms = <35>; key-positions = <4 17>;      bindings = <&kp GRAVE>;
         }; // R+G
-        combo_acute    { timeout-ms = <35>; key-positions = <4 15>;      bindings = <&kp RA(SQT)>;
+        combo_acute    { timeout-ms = <50>; key-positions = <4 15>;      bindings = <&kp RA(SQT)>;
         }; // R+D → ´ (AltGr+')
         combo_comment  { timeout-ms = <35>; key-positions = <15 16 26>;  bindings = <&dev_comment>;
         }; // D+F+X → Ctrl+/
@@ -212,8 +212,10 @@
         }; // MO2+MO1 izq → toggle scroll-layer (trackball scrollea)
         combo_snipe_tog  { timeout-ms = <50>; key-positions = <43 44>;   bindings = <&tog 5>;
         }; // MO1+MO2 der → toggle snipe-layer (trackball lento)
-        // combo_bt_tog  deshabilitado — T+B era sospechoso de interferir con el arranque
-        // combo_bt_tog  { timeout-ms = <50>; key-positions = <5 29>;   bindings = <&mo 3>; };
+        combo_bt_tog     { timeout-ms = <50>; key-positions = <5 29>;   bindings = <&mo 3>;   layers = <0>;
+        }; // T+B → momentary BT_layers (solo en QWERTY)
+        combo_mirror_tog { timeout-ms = <50>; key-positions = <36 37>;  bindings = <&tog 6>;  layers = <0>;
+        }; // MO2+CTRL → toggle MIRROR layer (solo en QWERTY)
 
         // ── Misc — macros de private.dtsi ─────────────────────────────────
         combo_email_gmail { timeout-ms = <50>; key-positions = <13 14 15 16>; bindings = <&macro_email_gmail>;
@@ -406,7 +408,7 @@ keymap {
 &kp ESC    &kp Q    &kp W    &kp E    &kp R    &kp T      &kp Y    &kp U    &kp I    &kp O    &kp P        &bspc_del
 &kp TAB  &kp A    &kp S    &kp D    &kp F    &kp G      &kp H    &kp J    &kp K    &kp L    &td_colon    &kp RA(SQT)
 &kp LSHIFT &kp Z    &kp X    &kp C    &kp V    &kp B      &kp N    &kp M    &kp COMMA &dev_home &kp UP     &dev_end
-&mo 2      &kp LCTRL &kp LALT &kp LGUI &mo 1   &kp SPACE  &kp ENTER &mo 1   &mo 2    &kp LEFT  &kp DOWN   &kp RIGHT
+&mo 2      &kp LGUI &kp LALT &kp LCTRL &mo 1   &kp SPACE  &kp ENTER &mo 1   &mo 2    &kp LEFT  &kp DOWN   &kp RIGHT
         >;
 
         sensor-bindings = <&scroll_vertical_encoder &desk_encoder>;
