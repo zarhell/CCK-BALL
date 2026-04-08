@@ -9,7 +9,9 @@
 #include <dt-bindings/zmk/pointing.h>
 #include "private.dtsi"
 
-&mmv_input_listener { input-processors = <&zip_xy_scaler 1 1>;
+&mmv_input_listener { 
+    input-processors = <&zip_xy_scaler 1 1>;
+    #sensor-binding-cells = <0>;
 };
 &msc_input_listener { input-processors = <&zip_scroll_scaler 1 1>;
 };
