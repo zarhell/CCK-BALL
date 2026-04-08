@@ -9,7 +9,7 @@
 #include <dt-bindings/zmk/pointing.h>
 #include "private.dtsi"
 
-&mmv_input_listener { input-processors = <&zip_xy_scaler 1 1>;
+&mmv_input_listener { input-processors = <&zip_xy_scaler 3 3>;
 };
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>;
 };
@@ -21,7 +21,7 @@
 };
 
 &mmv {
-    time-to-max-speed-ms = <500>;
+    time-to-max-speed-ms = <2000>;
     acceleration-exponent = <0>;
     trigger-period-ms = <16>;
 };
@@ -68,15 +68,13 @@
         // ── Control ────────────────────────────────────────────────────────
         combo_selword  { timeout-ms = <35>; key-positions = <3 5>;       bindings = <&sel_word>;
         }; // E+T → sel. palabra
-        combo_enter    { timeout-ms = <35>; key-positions = <29 43>;     bindings = <&kp RET>;
-        }; // B+ENT
-        combo_enter_spc { timeout-ms = <35>; key-positions = <29 40>;   bindings = <&kp RET>;
+        combo_enter_spc { timeout-ms = <35>; key-positions = <29 41>;   bindings = <&kp RET>;
         }; // B+SPC → ENTER
-        combo_bspc     { timeout-ms = <35>; key-positions = <17 40>;     bindings = <&kp BSPC>;
+        combo_bspc     { timeout-ms = <35>; key-positions = <17 41>;     bindings = <&kp BSPC>;
         }; // G+SPC
-        combo_del      { timeout-ms = <35>; key-positions = <5 40>;      bindings = <&kp DEL>;
+        combo_del      { timeout-ms = <35>; key-positions = <5 41>;      bindings = <&kp DEL>;
         }; // T+SPC
-        combo_space    { timeout-ms = <35>; key-positions = <30 43>;     bindings = <&kp SPACE>;
+        combo_space    { timeout-ms = <35>; key-positions = <30 42>;     bindings = <&kp SPACE>;
         }; // N+ENT
         combo_caps     { timeout-ms = <35>; key-positions = <24 25 26>;  bindings = <&kp CAPS>;
         }; // LSFT+Z+X
@@ -154,15 +152,15 @@
         // ── Español — dead acute + vocal ──────────────────────────────────
         // Win: activar "United States-International" en configuración de idioma
         // Mac: activar "ABC Extended" o instalar "US International PC"
-        combo_tilde_a  { timeout-ms = <35>; key-positions = <13 25>;     bindings = <&accent_a>;
+        combo_tilde_a  { timeout-ms = <35>; key-positions = <13 26>;     bindings = <&accent_a>;
         }; // A+Z → á
-        combo_tilde_e  { timeout-ms = <50>; key-positions = <3 15>;      bindings = <&accent_e>;
+        combo_tilde_e  { timeout-ms = <50>; key-positions = <3 16>;      bindings = <&accent_e>;
         }; // E+D → é
-        combo_tilde_i  { timeout-ms = <35>; key-positions = <8 20>;      bindings = <&accent_i>;
+        combo_tilde_i  { timeout-ms = <35>; key-positions = <8 19>;      bindings = <&accent_i>;
         }; // I+K → í
-        combo_tilde_o  { timeout-ms = <35>; key-positions = <9 21>;      bindings = <&accent_o>;
+        combo_tilde_o  { timeout-ms = <35>; key-positions = <9 20>;      bindings = <&accent_o>;
         }; // O+L → ó
-        combo_tilde_u  { timeout-ms = <35>; key-positions = <7 19>;      bindings = <&accent_u>;
+        combo_tilde_u  { timeout-ms = <35>; key-positions = <7 18>;      bindings = <&accent_u>;
         }; // U+J → ú
         combo_enie     { timeout-ms = <35>; key-positions = <19 30>;     bindings = <&kp RA(N)>;
         }; // J+N → ñ (Win: US-Intl directo / Mac: necesita "US Intl PC")
@@ -192,29 +190,29 @@
         combo_dead_acute   { timeout-ms = <35>; key-positions = <5 16>;  bindings = <&kp RA(SQT)>;
         }; // F+T → ´ dead acute (Win: US-International / Mac: ABC-Extended o US-Intl-PC)
         // F+B (izq) liberado → ahora es combo_semi (;)
-        combo_mouse_lclk_r { timeout-ms = <35>; key-positions = <18 19>; bindings = <&mkp LCLK>;
+        combo_mouse_lclk_r { timeout-ms = <35>; key-positions = <6 18>; bindings = <&mkp LCLK>;
         }; // H+J (der)
-        combo_mouse_rclk_r { timeout-ms = <35>; key-positions = <19 20>; bindings = <&mkp RCLK>;
+        combo_mouse_rclk_r { timeout-ms = <35>; key-positions = <19 30>; bindings = <&mkp RCLK>;
         }; // J+K (der)
         combo_mouse_mclk_r { timeout-ms = <35>; key-positions = <18 20>; bindings = <&mkp MCLK>;
         }; // H+K (der)
-        combo_mouse_back_r { timeout-ms = <35>; key-positions = <7 18>;  bindings = <&mkp MB4>;
+        combo_mouse_back_r { timeout-ms = <35>; key-positions = <18 31>;  bindings = <&mkp MB4>;
         }; // U+H (der) → atrás
-        combo_mouse_fwd_r  { timeout-ms = <35>; key-positions = <6 19>;  bindings = <&mkp MB5>;
+        combo_mouse_fwd_r  { timeout-ms = <35>; key-positions = <30 19>;  bindings = <&mkp MB5>;
         }; // Y+J (der) → adelante
 
         // ── macOS escritorios (Command+←/→/↑) ────────────────────────────
-        combo_desk_right { timeout-ms = <50>; key-positions = <1 15>;      bindings = <&kp LG(RIGHT)>;
+        combo_desk_right { timeout-ms = <50>; key-positions = <1 15>;      bindings = <&kp LC(RIGHT)>;
         }; // Q+D → Cmd+→ (escritorio derecho)
-        combo_desk_left  { timeout-ms = <50>; key-positions = <3 13>;      bindings = <&kp LG(LEFT)>;
+        combo_desk_left  { timeout-ms = <50>; key-positions = <3 13>;      bindings = <&kp LC(LEFT)>;
         }; // E+A → Cmd+← (escritorio izquierdo)
-        combo_desk_up    { timeout-ms = <50>; key-positions = <2 13 15>;   bindings = <&kp LG(UP)>;
+        combo_desk_up    { timeout-ms = <50>; key-positions = <2 13 15>;   bindings = <&kp LC(UP)>;
         }; // W+A+D → Cmd+↑ (Mission Control)
 
         // ── Scroll / Snipe ────────────────────────────────────────────────
-        combo_scroll_tog { timeout-ms = <50>; key-positions = <39 40>;   bindings = <&tog 4>;
+        combo_scroll_tog { timeout-ms = <50>; key-positions = <39 40>;   bindings = <&mo 4>;
         }; // MO2+MO1 izq → toggle scroll-layer (trackball scrollea)
-        combo_snipe_tog  { timeout-ms = <50>; key-positions = <43 44>;   bindings = <&tog 5>;
+        combo_snipe_tog  { timeout-ms = <50>; key-positions = <43 44>;   bindings = <&mo 5>;
         }; // MO1+MO2 der → toggle snipe-layer (trackball lento)
 
         // ── Misc — macros de private.dtsi ─────────────────────────────────
@@ -435,17 +433,17 @@ keymap {
 
 
     // ╭──────────────────── NUMBERS (IZQ) ─────────────────────╮ ╭──────────────────── F-KEYS (DER) ────────────────────╮
-        // │ 1    2    3                                            │ │ F7   F8   F9   F10  F11                             │
-        // │ 4    5    6                                            │ │ F4   F5   F6        F12                             │
-        // │ 7    8    9    0                                       │ │ F1   F2   F3                                       │
+        // │ 7    8    9    0                                       │ │ F1   F2   F3   F4   F5   F6                        │
+        // │ 4    5    6                                            │ │ F7   F8   F9   F10  F11  F12                       │
+        // │ 1    2    3                                            │ │                                                    │
         // │ CTL  WIN  ALT                                          │ │ ENTER                                            │
         // ╰────────────────────────────────────────────────────────╯ ╰────────────────────────────────────────────────────╯
         // ──────────────────────── CAPA 2: NUM + FN ────────────────────────
     NUM_FN {
         bindings = <
-&none      &kp N1   &kp N2   &kp N3   &none   &kp KP_NUM       &none  &kp F7 &kp F8 &kp F9  &kp F10 &kp F11
-&none      &kp N4   &kp N5   &kp N6   &none   &kp PSCRN        &none  &kp F4 &kp F5 &kp F6  &none   &kp F12
-&kp LSHIFT &kp N7   &kp N8   &kp N9   &kp N0  &kp PAUSE_BREAK  &none  &kp F1 &kp F2 &kp F3  &none   &none
+&none      &kp N7   &kp N8   &kp N9   &kp N0  &kp KP_NUM       &kp F1  &kp F2  &kp F3  &kp F4   &kp F5  &kp F6
+&none      &kp N4   &kp N5   &kp N6   &none   &kp PSCRN        &kp F7  &kp F8  &kp F9  &kp F10  &kp F11 &kp F12
+&kp LSHIFT &kp N1   &kp N2   &kp N3   &none   &kp PAUSE_BREAK  &none   &none   &none   &none    &none   &none
 &kp LCTRL  &kp LWIN &kp LALT &none    &none   &none            &kp KP_ENTER &none &none &trans &trans &trans
         >;
 
