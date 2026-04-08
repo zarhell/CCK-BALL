@@ -11,7 +11,7 @@
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 3 3>;
 };
-&msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>;
+&msc_input_listener { input-processors = <&zip_scroll_scaler 1 1>;
 };
 
 &msc {
@@ -405,7 +405,7 @@ keymap {
         bindings = <
 &kp ESC    &kp Q    &kp W    &kp E    &kp R    &kp T      &kp Y    &kp U    &kp I    &kp O    &kp P        &bspc_del
 &kp TAB    &kp A    &kp S    &kp D    &kp F    &kp G      &kp H    &kp J    &kp K    &kp L    &td_colon    &td_quote
-&kp LSHIFT &kp Z    &kp X    &kp C    &kp V    &kp B      &kp N    &kp M    &kp COMMA &dev_home &kp UP     &dev_end
+&kp LSHIFT &kp Z    &kp X    &kp C    &kp V    &kp B      &kp N    &kp M    &kp PSCRN &dev_home &kp UP     &dev_end
 &mo 2  &kp LWIN &kp LALT &kp LCTRL    &mo 1    &kp SPACE  &kp ENTER &mo 1   &mo 2    &kp LEFT  &kp DOWN   &kp RIGHT
         >;
 
@@ -422,10 +422,10 @@ keymap {
         // ──────────────────────── CAPA 1: NAV + NUM ────────────────────────
     NAV_NUM {
         bindings = <
-&none      &dev_home &kp UP    &dev_end &none     &kp KP_NUM   &kp KP_N7 &kp KP_N8 &kp KP_N9 &none   &none   &none
-&none      &kp LEFT  &kp DOWN  &kp RIGHT &none    &none        &kp KP_N4 &kp KP_N5 &kp KP_N6 &none   &none   &none
-&kp LSHIFT &wd_left  &kp PSCRN &wd_rght &none     &mo 3        &kp KP_N1 &kp KP_N2 &kp KP_N3 &none   &trans  &trans
-&kp LCTRL  &kp LWIN  &kp LALT  &none    &trans    &trans       &kp INS   &trans    &kp KP_N0 &trans  &trans  &trans
+            &none      &dev_home &kp UP    &dev_end &none    &kp KP_NUM         &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp COMMA    &none   &none
+            &none      &kp LEFT  &kp DOWN  &kp RIGHT &none   &kp LG(TAB)        &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp DOT   &none   &none
+            &trans     &wd_left  &trans    &wd_rght &none    &kp LG(LS(TAB))    &kp KP_N1 &kp KP_N2 &kp KP_N3 &trans  &trans  &trans
+            &trans     &trans    &trans    &none    &trans   &trans             &kp INS   &trans    &kp KP_N0 &trans  &trans  &trans
         >;
 
         sensor-bindings = <&scroll_horizontal_encoder &desk_encoder>;
@@ -441,10 +441,10 @@ keymap {
         // ──────────────────────── CAPA 2: NUM + FN ────────────────────────
     NUM_FN {
         bindings = <
-&none      &kp N7   &kp N8   &kp N9   &kp N0  &kp KP_NUM       &kp F1  &kp F2  &kp F3  &kp F4   &kp F5  &kp F6
-&none      &kp N4   &kp N5   &kp N6   &none   &kp PSCRN        &kp F7  &kp F8  &kp F9  &kp F10  &kp F11 &kp F12
-&kp LSHIFT &kp N1   &kp N2   &kp N3   &none   &kp PAUSE_BREAK  &none   &none   &none   &none    &none   &none
-&kp LCTRL  &kp LWIN &kp LALT &none    &none   &none            &kp KP_ENTER &none &none &trans &trans &trans
+            &none      &kp N1   &kp N2   &kp N3   &none  &kp KP_NUM       &kp F1  &kp F2  &kp F3  &kp F4   &kp F5  &kp F6
+            &none      &kp N4   &kp N5   &kp N6   &none   &kp PSCRN       &kp F7  &kp F8  &kp F9  &kp F10  &kp F11 &kp F12
+            &trans     &kp N7   &kp N8   &kp N9   &none   &mo 3           &kp PAUSE_BREAK   &none   &none   &trans    &none   &none
+            &trans     &trans   &kp N0  &none    &none   &none            &kp KP_ENTER     &none   &none   &trans    &trans  &trans
         >;
 
         sensor-bindings = <&inc_dec_kp PG_UP PG_DN &desk_encoder>;
