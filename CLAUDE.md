@@ -56,7 +56,6 @@ Los combos de acento usan macros con **dead acute** (`RA(SQT)`) + vocal.
 | T+SPC | 5+41 | DEL |
 | G+SPC | 17+41 | BSPC |
 | B+SPC | 29+41 | ENTER |
-| B+ENT | 29+43 | ENTER |
 | F+T | 5+16 | dead acute ´ |
 | E+T | 3+5 | sel_word |
 | R+T | 4+5 | = |
@@ -68,13 +67,14 @@ Los combos de acento usan macros con **dead acute** (`RA(SQT)`) + vocal.
 
 | Combo | Posiciones | Acción |
 |-------|-----------|--------|
-| ESC+Q (izq) | 0+1 | LCLK |
-| TAB+A (izq) | 12+13 | RCLK |
+| T+G (izq) | 5+17 | LCLK |
+| G+B (izq) | 17+29 | RCLK |
 | G+V (izq) | 17+28 | MCLK |
 | H+J (der) | 18+19 | LCLK |
 | J+K (der) | 19+20 | RCLK |
 | H+K (der) | 18+20 | MCLK |
 | Y+J (der) | 6+19 | FWD (MB5) |
+| H+M (der) | 18+31 | BACK (MB4) |
 | U+H (der) | 7+18 | ú (acento) |
 
 ---
@@ -86,10 +86,9 @@ Los combos de acento usan macros con **dead acute** (`RA(SQT)`) + vocal.
 | 0 | QWERTY | Base |
 | 1 | NAV_NUM | MO1 (pos 40/pos 43) |
 | 2 | NUM_FN | MO2 (pos 36/pos 44) |
-| 3 | BT_layers | `mo 3` (desde NAV_NUM layer 1, ya no accesible por B+MO1) |
-| 4 | scroll-layers | toggle MO2+MO1 (pos 36+40) |
-| 5 | snipe-layers | toggle MO1+MO2 der (pos 43+44) |
-| 6 | MIRROR | hold TAB (pos 12) — espejo lado derecho en mano izquierda |
+| 3 | BT_layers | `mo 3` (desde NUM_FN capa 2) |
+| 4 | snipe-layers | toggle MO1+MO2 der (pos 43+44) |
+| 5 | MIRROR | hold SPC (pos 41) — espejo lado derecho en mano izquierda |
 
 ---
 
