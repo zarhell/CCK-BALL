@@ -100,6 +100,14 @@
 
         combo_snipe_tog  { timeout-ms = <50>; key-positions = <27 29>; bindings = <&mo 4>; };
 
+        // Trackball modes — hold both keys to enter momentary layer
+        // Z+X (25+26) = SCROLL_MODE: trackball → scroll
+        // X+C (26+27) = SPACES_MODE: trackball → horizontal scroll + Ctrl+arrows
+        // C+V (27+28) = APPSW_MODE:  trackball = cursor + Cmd+Tab on arrows
+        combo_scroll_mode { timeout-ms = <100>; key-positions = <16 39>; bindings = <&mo 6>; };
+        combo_spaces_mode { timeout-ms = <100>; key-positions = <4  39>; bindings = <&mo 7>; };
+        combo_appsw_mode  { timeout-ms = <100>; key-positions = <28 39>; bindings = <&mo 8>; };
+
         combo_email_gmail { timeout-ms = <50>; key-positions = <13 14 15 16>; bindings = <&macro_email_gmail>; };
         combo_email_work  { timeout-ms = <50>; key-positions = <18 19 20 21>; bindings = <&macro_email_work>;  };
         combo_username    { timeout-ms = <50>; key-positions = <4  7  14  >;  bindings = <&macro_username>;    };
@@ -283,6 +291,48 @@
 &trans  &kp N  &kp M  &kp COMMA  &kp DOT  &kp K_LOCK  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans &trans &trans     &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
             >;
+        };
+
+        // L6: SCROLL_MODE — F+CMD (16+39)
+        // trackball_listener sub-node (right overlay) convierte XY → scroll en esta layer.
+        // Encoders mantienen su comportamiento de scroll.
+        SCROLL_MODE {
+            bindings = <
+&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
+            >;
+            sensor-bindings = <&scroll_enc &hscroll_enc>;
+        };
+
+        // L7: SPACES_MODE — R+CMD (4+39)
+        // trackball → horizontal scroll (overlay). Encoder izq = Ctrl+←/→ (switch space).
+        // Flechas físicas sobreescritas con Ctrl+arrow para macOS Spaces.
+        // NOTA: scroll horizontal desde trackball no activa Spaces en macOS nativamente;
+        //       requiere BetterTouchTool o Karabiner-Elements para ese mapeo.
+        SPACES_MODE {
+            bindings = <
+&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans           &trans
+&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans           &trans
+&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &kp LC(UP)       &trans
+&trans &trans &trans &trans &trans &trans    &trans &trans &trans &kp LC(LEFT) &kp LC(DOWN) &kp LC(RIGHT)
+            >;
+            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT) &hscroll_enc>;
+        };
+
+        // L8: APPSW_MODE — V+CMD (28+39)
+        // trackball = cursor normal (útil para clic en la app del switcher).
+        // Encoder izq = Cmd+Tab / Cmd+Shift+Tab.
+        // Flechas: → = Cmd+Tab (sig app), ← = Cmd+Shift+Tab (ant app), ↓ = Esc, ENT = confirmar.
+        APPSW_MODE {
+            bindings = <
+&trans &trans &trans &trans &trans &trans    &trans    &trans &trans &trans           &trans      &trans
+&trans &trans &trans &trans &trans &trans    &trans    &trans &trans &trans           &trans      &trans
+&trans &trans &trans &trans &trans &trans    &trans    &trans &trans &trans           &trans      &trans
+&trans &trans &trans &trans &trans &trans    &kp ENTER &trans &trans &kp LG(LS(TAB)) &kp ESCAPE  &kp LG(TAB)
+            >;
+            sensor-bindings = <&inc_dec_kp LG(TAB) LG(LS(TAB)) &hscroll_enc>;
         };
     };
 };
