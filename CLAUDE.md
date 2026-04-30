@@ -30,7 +30,8 @@ Fila 3: 36=MO2 37=CTL 38=ALT 39=GUI 40=MO1 41=SPC | 42=ENT 43=MO1 44=MO2 45=← 
 1. **Leer el keymap completo** antes de proponer cambios.
 2. **Verificar conflictos de combo**: dos combos no pueden tener exactamente los mismos `key-positions`.
 3. **No hay límite Kconfig de combos** en ZMK 0.3 — `CONFIG_ZMK_COMBO_MAX` no existe como símbolo. Los combos se compilan directamente desde DTS sin límite configurable.
-4. **No usar** `RA(A)`, `RA(E)`, `RA(I)`, `RA(O)`, `RA(U)` directamente para acentos — solo funciona en Windows US-Intl, falla en macOS estándar.
+4. **No usar** `RA(A)`, `RA(I)`, `RA(O)`, `RA(U)` directamente para acentos — solo funciona en Windows US-Intl, falla en macOS estándar. Usar `RA(E)` (dead acute en ABC Extended) para macros de acentos.
+5. **No agregar comentarios** en el keymap — ni inline (`//`) ni de bloque.
 
 ---
 
