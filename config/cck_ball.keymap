@@ -42,6 +42,12 @@
         bindings = <&kp LC(DOWN)>, <&kp LC(UP)>;
     };
 
+    desk_encoder: desk_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp LC(RIGHT)>, <&kp LC(LEFT)>;
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -90,7 +96,7 @@
         combo_plus     { timeout-ms = <35>; key-positions = <15 16 17>; bindings = <&kp PLUS>;  };
         combo_comment  { timeout-ms = <35>; key-positions = <15 16 26>; bindings = <&dev_comment>; };
 
-        combo_tilde_a { timeout-ms = <35>; key-positions = <13 26>; bindings = <&accent_a>; };
+        combo_tilde_a { timeout-ms = <35>; key-positions = <13 2 >; bindings = <&accent_a>; };
         combo_tilde_e { timeout-ms = <50>; key-positions = <3  16>; bindings = <&accent_e>; };
         combo_tilde_i { timeout-ms = <35>; key-positions = <8  19>; bindings = <&accent_i>; };
         combo_tilde_o { timeout-ms = <35>; key-positions = <9  20>; bindings = <&accent_o>; };
@@ -259,7 +265,7 @@
         NAV_NUM {
             bindings = <
 &kp LC(LEFT) &kp HOME  &kp UP    &kp END    &kp LC(RIGHT) &kp KP_NUM      &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp COMMA &sk LGUI &sk LALT
-&none        &kp LEFT  &kp DOWN  &kp RIGHT  &none         &kp LG(TAB)     &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp DOT   &sk LSFT &sk LCTL
+&none        &kp LEFT  &kp DOWN  &kp RIGHT  &none         &mo 6           &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp DOT   &sk LSFT &sk LCTL
 &trans       &dev_home &trans    &dev_end   &none         &kp LG(LS(TAB)) &kp KP_N1 &kp KP_N2 &kp KP_N3 &trans    &trans   &trans
 &trans       &trans    &trans    &none      &trans        &trans          &kp INS   &trans    &kp KP_N0 &trans    &trans   &trans
             >;
@@ -271,7 +277,7 @@
 &none   &none  &kp N7  &kp N8  &kp N9  &kp KP_NUM  &kp F1           &kp F2  &kp F3  &kp F4   &kp F5   &kp F6
 &none   &none  &kp N4  &kp N5  &kp N6  &kp PSCRN   &kp F7           &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
 &trans  &none  &kp N1  &kp N2  &kp N3  &mo 3       &kp PAUSE_BREAK  &none   &none   &trans   &none    &none
-&trans  &none  &trans  &kp N0  &none   &none  &none       &kp KP_ENTER     &none   &none   &trans   &trans   &trans
+&trans  &trans  &kp N0  &none   &none  &none       &kp KP_ENTER     &none   &none   &trans   &trans   &trans
             >;
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN &hscroll_enc>;
         };
@@ -303,6 +309,16 @@
 &trans  &kp N  &kp M  &kp COMMA  &kp DOT  &kp K_LOCK  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans &trans &trans     &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
             >;
+        };
+
+        scroll-layers {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+            sensor-bindings = <&inc_dec_kp PG_UP PG_DN &desk_encoder>;
         };
 
     };
