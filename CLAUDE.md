@@ -25,6 +25,12 @@ Fila 3: 36=MO2 37=CTL 38=ALT 39=GUI 40=MO1 41=SPC | 42=ENT 43=MO1 44=MO2 45=← 
 
 ---
 
+## Estilo de respuestas
+
+- **No describir** el resumen de operaciones realizadas. Solo sintetizar el resultado de forma muy concisa.
+
+---
+
 ## Reglas antes de editar el keymap
 
 1. **Leer el keymap completo** antes de proponer cambios.
@@ -87,8 +93,8 @@ Los combos de acento usan macros con **dead acute** (`RA(SQT)`) + vocal.
 | 0 | QWERTY | Base |
 | 1 | NAV_NUM | MO1 (pos 40/pos 43) |
 | 2 | NUM_FN | MO2 (pos 36/pos 44) |
-| 3 | BT_layers | `mo 3` (desde NUM_FN capa 2) |
-| 4 | snipe-layers | toggle MO1+MO2 der (pos 43+44) |
+| 3 | BT_layers | `mo 3` (desde NUM_FN: hold pos 29=B) |
+| 4 | snipe-layers | combo Z+B (pos 27+29) |
 | 5 | MIRROR | hold SPC (pos 41) — espejo lado derecho en mano izquierda |
 
 ---

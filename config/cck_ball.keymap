@@ -10,7 +10,7 @@
 #include "private.dtsi"
 
 &mmv_input_listener { input-processors = <&zip_xy_scaler 1 1>; #sensor-binding-cells = <0>; };
-&msc_input_listener { input-processors = <&zip_scroll_scaler 1 1>; };
+&msc_input_listener { input-processors = <&zip_scroll_scaler 1 3>; };
 
 &msc { acceleration-exponent = <0>; time-to-max-speed-ms = <300>; delay-ms = <0>; };
 &mmv { time-to-max-speed-ms = <2000>; acceleration-exponent = <0>; trigger-period-ms = <16>; };
@@ -30,6 +30,18 @@
         bindings = <&msc SCRL_RIGHT>, <&msc SCRL_LEFT>;
     };
 
+    hist_enc: hist_enc {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp LG(RBKT)>, <&kp LG(LBKT)>;
+    };
+
+    meth_enc: meth_enc {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp LC(DOWN)>, <&kp LC(UP)>;
+    };
+
     combos {
         compatible = "zmk,combos";
 
@@ -42,9 +54,9 @@
         combo_app       { timeout-ms = <35>;  key-positions = <30 31>;    bindings = <&kp K_APP>;   layers = <0>; };
         combo_soft_off  { timeout-ms = <200>; key-positions = <30 31>;    bindings = <&soft_off>;   layers = <2>; };
 
-        combo_comma { timeout-ms = <35>; key-positions = <14 27>; bindings = <&kp COMMA>; };
-        combo_dot   { timeout-ms = <35>; key-positions = <15 28>; bindings = <&kp DOT>;   };
-        combo_semi  { timeout-ms = <35>; key-positions = <16 29>; bindings = <&kp SEMI>;  };
+        combo_semi  { timeout-ms = <35>; key-positions = <14 27>; bindings = <&kp SEMI>;  };
+        combo_comma { timeout-ms = <35>; key-positions = <15 28>; bindings = <&kp COMMA>; };
+        combo_dot   { timeout-ms = <35>; key-positions = <16 29>; bindings = <&kp DOT>;   };
 
         combo_lbrc { timeout-ms = <35>; key-positions = <0  1 >; bindings = <&kp LBKT>; };
         combo_rbrc { timeout-ms = <35>; key-positions = <0  2 >; bindings = <&kp RBKT>; };
@@ -99,14 +111,6 @@
         combo_desk_up    { timeout-ms = <50>; key-positions = <2  13 15>; bindings = <&kp LC(UP)>;    };
 
         combo_snipe_tog  { timeout-ms = <50>; key-positions = <27 29>; bindings = <&mo 4>; };
-
-        // Trackball modes — hold both keys to enter momentary layer
-        // Z+X (25+26) = SCROLL_MODE: trackball → scroll
-        // X+C (26+27) = SPACES_MODE: trackball → horizontal scroll + Ctrl+arrows
-        // C+V (27+28) = APPSW_MODE:  trackball = cursor + Cmd+Tab on arrows
-        combo_scroll_mode { timeout-ms = <100>; key-positions = <16 39>; bindings = <&mo 6>; };
-        combo_spaces_mode { timeout-ms = <100>; key-positions = <4  39>; bindings = <&mo 7>; };
-        combo_appsw_mode  { timeout-ms = <100>; key-positions = <28 39>; bindings = <&mo 8>; };
 
         combo_email_gmail { timeout-ms = <50>; key-positions = <13 14 15 16>; bindings = <&macro_email_gmail>; };
         combo_email_work  { timeout-ms = <50>; key-positions = <18 19 20 21>; bindings = <&macro_email_work>;  };
@@ -187,8 +191,16 @@
             bindings = <&macro_press>, <&kp LCTRL &kp LSHFT &kp RIGHT>, <&macro_release>, <&kp LCTRL &kp LSHFT>;
         };
 
-        dev_home: dev_home { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(LEFT)>;  };
-        dev_end:  dev_end  { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp LG(RIGHT)>; };
+        dev_home: dev_home {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press>, <&kp LCMD>, <&macro_tap>, <&kp LEFT>, <&macro_release>, <&kp LCMD>;
+        };
+        dev_end: dev_end {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press>, <&kp LCMD>, <&macro_tap>, <&kp RIGHT>, <&macro_release>, <&kp LCMD>;
+        };
 
         wd_left: wd_left {
             compatible = "zmk,behavior-macro";
@@ -239,9 +251,9 @@
 &kp ESC     &kp Q    &kp W    &kp E  &kp R  &kp T        &kp Y      &kp U       &kp I         &kp O         &kp P      &bspc_del
 &kp TAB     &kp A    &kp S    &kp D  &kp F  &kp G        &hm RGUI H &hm RALT J  &hm RCTRL K   &hm RSHFT L   &td_colon  &td_quote
 &kp LSHIFT  &kp Z    &kp X    &kp C  &kp V  &kp B        &kp N      &kp M       &kp LG(GRAVE) &kp HOME      &kp UP     &kp END
-&kp LCTRL   &mo 2    &kp LALT &kp LCMD   &mo 1  &lt 5 SPACE  &kp ENTER  &mo 1       &sl 2         &kp LEFT      &kp DOWN   &kp RIGHT
+&kp LCTRL   &mo 5    &kp LALT &kp LCMD   &mo 1  &lt 2 SPACE  &kp ENTER  &mo 1       &sl 2         &kp LEFT      &kp DOWN   &kp RIGHT
             >;
-            sensor-bindings = <&inc_dec_kp DOWN UP &hscroll_enc>;
+            sensor-bindings = <&hist_enc &meth_enc>;
         };
 
         NAV_NUM {
@@ -256,10 +268,10 @@
 
         NUM_FN {
             bindings = <
-&none   &kp N7  &kp N8  &kp N9  &none  &kp KP_NUM  &kp F1           &kp F2  &kp F3  &kp F4   &kp F5   &kp F6
-&none   &kp N4  &kp N5  &kp N6  &none  &kp PSCRN   &kp F7           &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
-&trans  &kp N1  &kp N2  &kp N3  &none  &mo 3       &kp PAUSE_BREAK  &none   &none   &trans   &none    &none
-&trans  &trans  &kp N0  &none   &none  &none       &kp KP_ENTER     &none   &none   &trans   &trans   &trans
+&none   &none  &kp N7  &kp N8  &kp N9  &kp KP_NUM  &kp F1           &kp F2  &kp F3  &kp F4   &kp F5   &kp F6
+&none   &none  &kp N4  &kp N5  &kp N6  &kp PSCRN   &kp F7           &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
+&trans  &none  &kp N1  &kp N2  &kp N3  &mo 3       &kp PAUSE_BREAK  &none   &none   &trans   &none    &none
+&trans  &none  &trans  &kp N0  &none   &none  &none       &kp KP_ENTER     &none   &none   &trans   &trans   &trans
             >;
             sensor-bindings = <&inc_dec_kp PG_UP PG_DN &hscroll_enc>;
         };
@@ -293,46 +305,5 @@
             >;
         };
 
-        // L6: SCROLL_MODE — F+CMD (16+39)
-        // trackball_listener sub-node (right overlay) convierte XY → scroll en esta layer.
-        // Encoders mantienen su comportamiento de scroll.
-        SCROLL_MODE {
-            bindings = <
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans &trans
-            >;
-            sensor-bindings = <&scroll_enc &hscroll_enc>;
-        };
-
-        // L7: SPACES_MODE — R+CMD (4+39)
-        // trackball → horizontal scroll (overlay). Encoder izq = Ctrl+←/→ (switch space).
-        // Flechas físicas sobreescritas con Ctrl+arrow para macOS Spaces.
-        // NOTA: scroll horizontal desde trackball no activa Spaces en macOS nativamente;
-        //       requiere BetterTouchTool o Karabiner-Elements para ese mapeo.
-        SPACES_MODE {
-            bindings = <
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans           &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &trans           &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &trans &kp LC(UP)       &trans
-&trans &trans &trans &trans &trans &trans    &trans &trans &trans &kp LC(LEFT) &kp LC(DOWN) &kp LC(RIGHT)
-            >;
-            sensor-bindings = <&inc_dec_kp LC(RIGHT) LC(LEFT) &hscroll_enc>;
-        };
-
-        // L8: APPSW_MODE — V+CMD (28+39)
-        // trackball = cursor normal (útil para clic en la app del switcher).
-        // Encoder izq = Cmd+Tab / Cmd+Shift+Tab.
-        // Flechas: → = Cmd+Tab (sig app), ← = Cmd+Shift+Tab (ant app), ↓ = Esc, ENT = confirmar.
-        APPSW_MODE {
-            bindings = <
-&trans &trans &trans &trans &trans &trans    &trans    &trans &trans &trans           &trans      &trans
-&trans &trans &trans &trans &trans &trans    &trans    &trans &trans &trans           &trans      &trans
-&trans &trans &trans &trans &trans &trans    &trans    &trans &trans &trans           &trans      &trans
-&trans &trans &trans &trans &trans &trans    &kp ENTER &trans &trans &kp LG(LS(TAB)) &kp ESCAPE  &kp LG(TAB)
-            >;
-            sensor-bindings = <&inc_dec_kp LG(TAB) LG(LS(TAB)) &hscroll_enc>;
-        };
     };
 };
