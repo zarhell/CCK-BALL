@@ -51,7 +51,6 @@
     combos {
         compatible = "zmk,combos";
 
-        combo_selword   { timeout-ms = <35>;  key-positions = <3  5 >;    bindings = <&sel_word>;   };
         combo_enter_spc { timeout-ms = <35>;  key-positions = <29 41>;    bindings = <&kp RET>;     };
         combo_bspc      { timeout-ms = <35>;  key-positions = <17 41>;    bindings = <&kp BSPC>;    };
         combo_del       { timeout-ms = <35>;  key-positions = <5  41>;    bindings = <&kp DEL>;     };
@@ -94,7 +93,6 @@
         combo_minus    { timeout-ms = <35>; key-positions = <16 17>;    bindings = <&kp MINUS>;  };
         combo_under    { timeout-ms = <35>; key-positions = <28 29>;    bindings = <&kp UNDER>;  };
         combo_plus     { timeout-ms = <35>; key-positions = <15 16 17>; bindings = <&kp PLUS>;  };
-        combo_comment  { timeout-ms = <35>; key-positions = <15 16 26>; bindings = <&dev_comment>; };
 
         combo_tilde_a { timeout-ms = <35>; key-positions = <13 2 >; bindings = <&accent_a>; };
         combo_tilde_e { timeout-ms = <50>; key-positions = <3  16>; bindings = <&accent_e>; };
@@ -191,12 +189,6 @@
         ocsqu:  ocsqu  { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_tap>, <&kp LBKT &kp RBKT &kp LEFT_ARROW>; };
         ocang:  ocang  { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&macro_tap>, <&kp LT   &kp GT   &kp LEFT_ARROW>; };
 
-        sel_word: sel_word {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press>, <&kp LCTRL &kp LSHFT &kp RIGHT>, <&macro_release>, <&kp LCTRL &kp LSHFT>;
-        };
-
         dev_home: dev_home {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -206,30 +198,6 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press>, <&kp LCMD>, <&macro_tap>, <&kp RIGHT>, <&macro_release>, <&kp LCMD>;
-        };
-
-        wd_left: wd_left {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press>, <&kp LCTRL &kp LEFT>, <&macro_release>, <&kp LCTRL>;
-        };
-
-        wd_rght: wd_rght {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press>, <&kp LCTRL &kp RIGHT>, <&macro_release>, <&kp LCTRL>;
-        };
-
-        dev_comment: dev_comment {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press>, <&kp LCTRL &kp FSLH>, <&macro_release>, <&kp LCTRL>;
-        };
-
-        win_swap: win_swap {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&macro_press>, <&kp LALT &kp TAB>, <&macro_release>, <&kp LALT>;
         };
 
         accent_a: accent_a { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <50>; tap-ms = <40>; bindings = <&kp RA(E) &kp A>; };
@@ -256,10 +224,10 @@
             bindings = <
 &kp ESC     &kp Q    &kp W    &kp E  &kp R  &kp T        &kp Y      &kp U       &kp I         &kp O         &kp P      &bspc_del
 &kp TAB     &kp A    &kp S    &kp D  &kp F  &kp G        &hm RGUI H &hm RALT J  &hm RCTRL K   &hm RSHFT L   &td_colon  &td_quote
-&kp LSHIFT  &kp Z    &kp X    &kp C  &kp V  &kp B        &kp N      &kp M       &kp LG(GRAVE) &kp HOME      &kp UP     &kp END
+&kp LSHIFT  &kp Z    &kp X    &kp C  &kp V  &kp B        &kp N      &kp M       &kp K_APP     &kp HOME      &kp UP     &kp END
 &kp LCTRL   &mo 5    &kp LALT &kp LCMD   &mo 1  &lt 2 SPACE  &kp ENTER  &mo 1       &sl 2         &kp LEFT      &kp DOWN   &kp RIGHT
             >;
-            sensor-bindings = <&hist_enc &meth_enc>;
+            sensor-bindings = <&hist_enc &desk_encoder>;
         };
 
         NAV_NUM {
@@ -318,7 +286,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_UP PG_DN &desk_encoder>;
+            sensor-bindings = <&scroll_enc &desk_encoder>;
         };
 
     };
