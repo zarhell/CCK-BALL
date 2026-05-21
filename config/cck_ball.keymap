@@ -192,12 +192,12 @@
         dev_home: dev_home {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press>, <&kp LCMD>, <&macro_tap>, <&kp LEFT>, <&macro_release>, <&kp LCMD>;
+            bindings = <&macro_press>, <&kp LCTRL>, <&macro_tap>, <&kp LEFT>, <&macro_release>, <&kp LCTRL>;
         };
         dev_end: dev_end {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&macro_press>, <&kp LCMD>, <&macro_tap>, <&kp RIGHT>, <&macro_release>, <&kp LCMD>;
+            bindings = <&macro_press>, <&kp LCTRL>, <&macro_tap>, <&kp RIGHT>, <&macro_release>, <&kp LCTRL>;
         };
 
         accent_a: accent_a { compatible = "zmk,behavior-macro"; #binding-cells = <0>; wait-ms = <50>; tap-ms = <40>; bindings = <&kp RA(E) &kp A>; };

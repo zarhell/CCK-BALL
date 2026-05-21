@@ -117,20 +117,20 @@
         // L4 snipe-layers: trackball → scroll
         scroller {
             layers = <4>;
-            input-processors = <&zip_xy_to_scroll_mapper>;
+            input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_scaler 1 4>;
         };
 
         // L6 SCROLL_MODE (F+CMD combo): trackball XY → scroll vertical+horizontal
         scroll_mode {
             layers = <6>;
-            input-processors = <&zip_xy_to_scroll_mapper>;
+            input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_scaler 1 4>;
         };
 
         // L7 SPACES_MODE (R+CMD combo): trackball XY → scroll horizontal
         // El movimiento horizontal genera SCRL_RIGHT/LEFT; mapear a Ctrl+←/→ vía BetterTouchTool si se desea
         spaces_scroll {
             layers = <7>;
-            input-processors = <&zip_xy_to_scroll_mapper>;
+            input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_scaler 1 4>;
         };
 
         // L8 APPSW_MODE (V+CMD combo): sin sub-nodo → cursor normal (mmv_input_listener)

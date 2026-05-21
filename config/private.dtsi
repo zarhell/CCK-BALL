@@ -14,28 +14,30 @@
         macro_email_gmail: macro_email_gmail {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp U &kp S &kp E &kp R &kp AT &kp E &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O &kp M>;
+            bindings = <&kp J &kp O &kp H &kp A &kp N &kp DOT &kp Z &kp U &kp B &kp I &kp E &kp T &kp A &kp AT &kp G &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O &kp M>;
         };
 
         // Email trabajo (combo: H+J+K+L)
         macro_email_work: macro_email_work {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp U &kp S &kp E &kp R &kp AT &kp W &kp O &kp R &kp K &kp DOT &kp C &kp O &kp M>;
+            bindings = <&kp J &kp O &kp H &kp A &kp N &kp DOT &kp Z &kp U &kp B &kp I &kp E &kp T &kp A &kp AT &kp G &kp L &kp O &kp B &kp A &kp N &kp T &kp DOT &kp C &kp O &kp M>;
         };
 
         // Username (combo: R+U+S)
         macro_username: macro_username {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp U &kp S &kp E &kp R &kp N &kp A &kp M &kp E>;
+            bindings = <&kp J &kp O &kp H &kp A &kp N &kp DOT &kp Z &kp U &kp B &kp I &kp E &kp T &kp A>;
         };
 
         // Password (combo: W+P)
         macro_password: macro_password {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp P &kp A &kp S &kp S &kp W &kp O &kp R &kp D>;
+            wait-ms = <30>;
+            tap-ms = <30>;
+            bindings = <&kp EQUAL &kp AMPS &kp LS(C) &kp O &kp L &kp N2 &kp N3 &kp N4 &kp STAR &kp Z &kp R &kp Z &kp N2>;
         };
     };
 };
