@@ -44,6 +44,24 @@
         bindings = <&kp LC(RIGHT)>, <&kp LC(LEFT)>;
     };
 
+    tab_enc: tab_enc {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp LG(LS(RBKT))>, <&kp LG(LS(LBKT))>;
+    };
+
+    zoom_enc: zoom_enc {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp LG(EQUAL)>, <&kp LG(MINUS)>;
+    };
+
+    undo_enc: undo_enc {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp LG(LS(Z))>, <&kp LG(Z)>;
+    };
+
     conditional_layers {
         compatible = "zmk,conditional-layers";
         brackets_layer {
@@ -184,7 +202,7 @@
 &kp LSHIFT  &kp Z    &kp X    &kp C  &kp V  &kp B        &kp N      &kp M       &mo 2     &kp LG(LEFT) &kp UP     &kp LG(RIGHT)
 &kp LCTRL   &mo 7    &kp LALT  &kp LCMD   &mo 1  &lt 2 SPACE  &kp ENTER  &mo 1       &kp LALT      &kp LEFT      &kp DOWN   &kp RIGHT
             >;
-            sensor-bindings = <&hist_enc &desk_encoder>;
+            sensor-bindings = <&desk_encoder &scroll_enc>;
         };
 
         NAV_NUM {
@@ -194,7 +212,7 @@
 &trans  &kp LG(Z) &kp LG(X) &kp LG(C)  &kp LG(V)    &kp PG_DN    &kp N0 &kp N1  &kp N2  &kp N3  &trans   &trans
 &trans  &trans    &trans    &trans     &trans       &trans       &trans &trans  &trans  &trans  &trans  &trans
             >;
-            sensor-bindings = <&hscroll_enc &scroll_enc>;
+            sensor-bindings = <&hist_enc &tab_enc>;
         };
 
         FN {
@@ -204,7 +222,7 @@
 &trans  &kp F9  &kp F10  &kp F11  &kp F12  &mo 3        &kp PAUSE_BREAK  &kp LG(LBKT)     &kp LG(RBKT)    &none   &msc SCRL_UP    &msc SCRL_DOWN
 &trans  &trans  &trans   &kp INS  &trans   &trans       &trans           &trans           &trans           &trans  &trans          &trans
             >;
-            sensor-bindings = <&inc_dec_kp PG_UP PG_DN &hscroll_enc>;
+            sensor-bindings = <&inc_dec_kp C_BRI_UP C_BRI_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
         };
 
         BT_layers {
@@ -224,6 +242,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
+            sensor-bindings = <&desk_encoder &zoom_enc>;
         };
 
         scroll-layers {
@@ -233,7 +252,7 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
-            sensor-bindings = <&scroll_enc &desk_encoder>;
+            sensor-bindings = <&hscroll_enc &scroll_enc>;
         };
 
         BRACKETS {
@@ -243,6 +262,7 @@
 &trans  &kp LPAR  &kp RPAR  &none         &none          &none       &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans    &trans    &trans        &trans         &trans      &trans  &trans  &trans  &trans  &trans  &trans
             >;
+            sensor-bindings = <&undo_enc &inc_dec_kp UP DOWN>;
         };
 
         ACCENT {
