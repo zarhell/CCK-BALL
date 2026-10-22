@@ -48,7 +48,7 @@
         compatible = "zmk,conditional-layers";
         brackets_layer {
             if-layers = <1 2>;
-            then-layer = <7>;
+            then-layer = <6>;
         };
     };
 
@@ -100,7 +100,8 @@
 
         combo_mouse_lclk_l { timeout-ms = <35>; key-positions = <5  17>; bindings = <&mkp LCLK>; };
         combo_mouse_rclk_l { timeout-ms = <35>; key-positions = <17 29>; bindings = <&mkp RCLK>; };
-        combo_mouse_mclk_l { timeout-ms = <35>; key-positions = <17 28>; bindings = <&mkp MCLK>; };
+        combo_mouse_mclk_l { timeout-ms = <35>; key-positions = <5  29>; bindings = <&mkp MCLK>; };
+        combo_mouse_mclk_nav { timeout-ms = <35>; layers = <1>; key-positions = <6 18>; bindings = <&mkp MCLK>; };
         combo_mouse_lclk_r { timeout-ms = <35>; key-positions = <18 19>; bindings = <&mkp LCLK>; };
         combo_mouse_rclk_r { timeout-ms = <35>; key-positions = <19 20>; bindings = <&mkp RCLK>; };
         combo_mouse_mclk_r { timeout-ms = <35>; key-positions = <18 20>; bindings = <&mkp MCLK>; };
@@ -173,25 +174,25 @@
 
     // Fila 0:  0=ESC  1=Q   2=W   3=E   4=R   5=T  |  6=Y   7=U   8=I   9=O  10=P  11=BSPC
     // Fila 1: 12=TAB 13=A  14=S  15=D  16=F  17=G  | 18=H  19=J  20=K  21=L  22=;  23='"
-    // Fila 2: 24=LSH 25=Z  26=X  27=C  28=V  29=B  | 30=N  31=M  32=,  33=Cmd+<- 34=UP 35=Cmd+->
-    // Fila 3: 36=CTL 37=MO5 38=ACCENT 39=CMD 40=MO1 41=lt2 SPC | 42=ENT 43=MO1 44=ALT 45=<- 46=v 47=->
+    // Fila 2: 24=LSH 25=Z  26=X  27=C  28=V  29=B  | 30=N  31=M  32=MO2 33=Cmd+<- 34=UP 35=Cmd+->
+    // Fila 3: 36=CTL 37=ACCENT 38=ALT 39=CMD 40=MO1 41=lt2 SPC | 42=ENT 43=MO1 44=ALT 45=<- 46=v 47=->
 
         QWERTY {
             bindings = <
 &kp ESC     &kp Q    &kp W    &kp E  &kp R  &kp T        &kp Y      &kp U       &kp I         &kp O         &kp P      &bspc_del
 &kp TAB     &kp A    &kp S    &kp D  &kp F  &kp G        &kp H      &kp J       &kp K         &kp L         &td_colon  &td_quote
-&kp LSHIFT  &kp Z    &kp X    &kp C  &kp V  &kp B        &kp N      &kp M       &kp COMMA     &kp LG(LEFT) &kp UP     &kp LG(RIGHT)
-&kp LCTRL   &mo 5    &mo 8    &kp LCMD   &mo 1  &lt 2 SPACE  &kp ENTER  &mo 1       &kp LALT      &kp LEFT      &kp DOWN   &kp RIGHT
+&kp LSHIFT  &kp Z    &kp X    &kp C  &kp V  &kp B        &kp N      &kp M       &mo 2     &kp LG(LEFT) &kp UP     &kp LG(RIGHT)
+&kp LCTRL   &mo 7    &kp LALT  &kp LCMD   &mo 1  &lt 2 SPACE  &kp ENTER  &mo 1       &kp LALT      &kp LEFT      &kp DOWN   &kp RIGHT
             >;
             sensor-bindings = <&hist_enc &desk_encoder>;
         };
 
         NAV_NUM {
             bindings = <
-&kp LC(LEFT) &kp LG(LEFT) &kp UP &kp LG(RIGHT) &kp LC(RIGHT) &none &none  &kp N7  &kp N8  &kp N9  &sk LGUI &sk LALT
-&kp LG(TAB) &kp LEFT &kp DOWN &kp RIGHT &mo 6       &kp PG_UP    &none  &kp N4  &kp N5  &kp N6  &sk LSFT &sk LCTL
+&kp LC(LEFT) &kp LG(LEFT) &kp UP &kp LG(RIGHT) &kp LC(RIGHT) &none &mkp LCLK  &kp N7  &kp N8  &kp N9  &sk LGUI &sk LALT
+&kp LG(TAB) &kp LEFT &kp DOWN &kp RIGHT &mo 5       &kp PG_UP    &mkp RCLK  &kp N4  &kp N5  &kp N6  &sk LSFT &sk LCTL
 &trans  &kp LG(Z) &kp LG(X) &kp LG(C)  &kp LG(V)    &kp PG_DN    &kp N0 &kp N1  &kp N2  &kp N3  &trans   &trans
-&trans  &trans    &trans    &trans     &trans       &trans       &trans &trans  &trans  &mkp LCLK &mkp MCLK &mkp RCLK
+&trans  &trans    &trans    &trans     &trans       &trans       &trans &trans  &trans  &trans  &trans  &trans
             >;
             sensor-bindings = <&hscroll_enc &scroll_enc>;
         };
@@ -222,15 +223,6 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-        };
-
-        MIRROR {
-            bindings = <
-&trans  &kp Y  &kp U  &kp I      &kp O    &kp P       &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp H  &kp J  &kp K      &kp L    &kp SEMI    &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp N  &kp M  &kp COMMA  &kp DOT  &kp UP     &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans &trans &trans     &trans   &trans      &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 

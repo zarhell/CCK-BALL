@@ -122,14 +122,12 @@
             input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT &zip_xy_to_scroll_mapper &zip_scroll_scaler 1 160>;
         };
 
-        // L6 SCROLL_MODE (F+CMD combo): trackball XY → scroll vertical+horizontal
+        // L5 scroll-layers (mo 5 desde NAV_NUM): trackball XY → scroll vertical+horizontal
         scroll_mode {
-            layers = <6>;
+            layers = <5>;
             input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT &zip_xy_to_scroll_mapper &zip_scroll_scaler 1 160>;
         };
 
-        // L8 APPSW_MODE (V+CMD combo): sin sub-nodo → cursor normal (mmv_input_listener)
-        // El cursor sirve para clic en apps del switcher mientras el combo esté presionado
     };
 };
 

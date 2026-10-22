@@ -18,8 +18,8 @@ Usar posiciones, no etiquetas físicas.
 ```
 Fila 0:  0=ESC  1=Q   2=W   3=E   4=R   5=T  |  6=Y   7=U   8=I   9=O  10=P  11=BSPC
 Fila 1: 12=TAB 13=A  14=S  15=D  16=F  17=G  | 18=H  19=J  20=K  21=L  22=;  23='"
-Fila 2: 24=LSH 25=Z  26=X  27=C  28=V  29=B  | 30=N  31=M  32=,  33=Cmd← 34=UP 35=Cmd→
-Fila 3: 36=CTL 37=MO5 38=ACCENT 39=CMD 40=MO1 41=lt2 SPC | 42=ENT 43=MO1 44=ALT 45=← 46=↓ 47=→
+Fila 2: 24=LSH 25=Z  26=X  27=C  28=V  29=B  | 30=N  31=M  32=MO2 33=Cmd← 34=UP 35=Cmd→
+Fila 3: 36=CTL 37=ACCENT 38=ALT 39=CMD 40=MO1 41=lt2 SPC | 42=ENT 43=MO1 44=ALT 45=← 46=↓ 47=→
 ```
 
 ---
@@ -40,9 +40,9 @@ Fila 3: 36=CTL 37=MO5 38=ACCENT 39=CMD 40=MO1 41=lt2 SPC | 42=ENT 43=MO1 44=ALT 
 
 ---
 
-## Acentos españoles — capa 8 ACCENT (AltGr virtual)
+## Acentos españoles — capa 7 ACCENT (AltGr virtual)
 
-Mantener pos 38 + letra: A=á, E=é, I=í, O=ó, U=ú, N=ñ, Y=ü; con Shift, mayúscula. Macros `accent_*` (`RA(E)`/`RA(N)`/`RA(U)` + letra) y `mod-morph` `acc_*` por Shift. Layout macOS: ABC Extended. Ya no hay combos de acento.
+Mantener pos 37 + letra: A=á, E=é, I=í, O=ó, U=ú, N=ñ, Y=ü; con Shift, mayúscula. Macros `accent_*` (`RA(E)`/`RA(N)`/`RA(U)` + letra) y `mod-morph` `acc_*` por Shift. Layout macOS: ABC Extended. Ya no hay combos de acento.
 
 ---
 
@@ -51,8 +51,8 @@ Mantener pos 38 + letra: A=á, E=é, I=í, O=ó, U=ú, N=ñ, Y=ü; con Shift, ma
 - Combos de 2 teclas entre letras llevan `require-prior-idle-ms = <80>` y `timeout-ms = <30>`; escritorios (E+A, Q+D, W+A+D) 150 ms y solo capa 0; macros privadas 200 ms y solo capa 0.
 - Edición: T+SPC=DEL, G+SPC=BSPC, B+SPC=ENTER, N+ENT=espacio.
 - Símbolos: `;` E+V, `:` R+B, `=` E+T, `-` F+G, `"` W+R, `'` S+F.
-- Ratón: T+G / G+B / G+V (izq: L/R/M clic), H+J / J+K / H+K (der), H+M atrás, Y+J adelante.
-- Clics opcionales: mantener MO1 (pos 43) + pos 45/46/47 = L/M/R en NAV_NUM.
+- Ratón: T+G / G+B / T+B (izq: L/R/M clic), H+J / J+K / H+K (der), H+M atrás, Y+J adelante.
+- Clics en NAV_NUM: pos 6 = L, pos 18 = R, combo 6+18 = M (usables junto al trackball).
 - Capa snipe: combo C+B (27+29).
 
 ---
@@ -66,12 +66,11 @@ Mantener pos 38 + letra: A=á, E=é, I=í, O=ó, U=ú, N=ñ, Y=ü; con Shift, ma
 | 2 | FN | hold SPC (`lt 2`, pos 41) |
 | 3 | BT_layers | `mo 3` desde FN (pos 29) |
 | 4 | snipe-layers | combo C+B; el trackball hace scroll |
-| 5 | MIRROR | MO5 (pos 37) |
-| 6 | scroll-layers | `mo 6` desde NAV_NUM (pos 16) |
-| 7 | BRACKETS | automática con L1+L2 |
-| 8 | ACCENT | mantener pos 38 |
+| 5 | scroll-layers | `mo 5` desde NAV_NUM (pos 16) |
+| 6 | BRACKETS | automática con L1+L2 |
+| 7 | ACCENT | mantener pos 37 |
 
-Documentación completa: vault `wiki/conceptos/ZMK/CCK-BALL - arquitectura y mapeo.md`.
+Documentación completa: vault `wiki/conceptos/ZMK/CCK-BALL/CCK-BALL - arquitectura y mapeo.md`.
 
 ---
 
