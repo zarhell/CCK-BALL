@@ -193,7 +193,7 @@
 &trans  &kp LG(Z) &kp LG(X) &kp LG(C)  &kp LG(V)    &kp PG_DN    &kp N0 &kp N1  &kp N2  &kp N3  &trans   &trans
 &trans  &trans    &trans    &trans     &trans       &trans       &trans &trans  &trans  &mkp LCLK &mkp MCLK &mkp RCLK
             >;
-            sensor-bindings = <&scroll_enc &hscroll_enc>;
+            sensor-bindings = <&hscroll_enc &scroll_enc>;
         };
 
         FN {

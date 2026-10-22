@@ -6,6 +6,7 @@
  
 #include "cck_ball.dtsi"
 #include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <dt-bindings/zmk/input_transform.h>
 
 &default_transform {
     col-offset = <6>;
@@ -113,18 +114,18 @@
     trackball_listener: trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
-        input-processors = <&zip_xy_scaler 1 10>;
+        input-processors = <&zip_xy_scaler 3 20>;
 
         // L4 snipe-layers: trackball → scroll
         scroller {
             layers = <4>;
-            input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_scaler 1 80>;
+            input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT &zip_xy_to_scroll_mapper &zip_scroll_scaler 1 160>;
         };
 
         // L6 SCROLL_MODE (F+CMD combo): trackball XY → scroll vertical+horizontal
         scroll_mode {
             layers = <6>;
-            input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_scaler 1 80>;
+            input-processors = <&zip_xy_transform INPUT_TRANSFORM_X_INVERT &zip_xy_to_scroll_mapper &zip_scroll_scaler 1 160>;
         };
 
         // L8 APPSW_MODE (V+CMD combo): sin sub-nodo → cursor normal (mmv_input_listener)
