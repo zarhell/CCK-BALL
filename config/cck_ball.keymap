@@ -207,10 +207,10 @@
 
         NAV_NUM {
             bindings = <
-&none       &kp LG(LEFT) &kp UP &kp LG(RIGHT) &none    &mkp LCLK    &kp N7  &kp N8  &kp N9  &none   &sk LGUI &none
-&kp LG(TAB) &kp LEFT &kp DOWN &kp RIGHT &none       &mo 5        &kp N4  &kp N5  &kp N6  &none   &sk LSFT &sk LCTL
-&trans  &kp LC(RIGHT) &none &kp LC(LEFT)  &none    &mkp RCLK    &kp N1  &kp N2  &kp N3  &none   &trans   &trans
-&trans  &trans    &trans    &trans     &trans       &trans       &trans &trans  &trans  &kp N0  &trans  &trans
+&none       &kp LG(LEFT) &kp UP &kp LG(RIGHT) &none    &mkp LCLK    &kp N7  &kp N8  &kp N9  &none   &sk LGUI &kp DEL
+&kp LG(TAB) &kp LEFT &kp DOWN &kp RIGHT &none       &mo 5        &kp N4  &kp N5  &kp N6  &sk LALT   &sk LSFT &sk LCTL
+&trans  &kp LC(LEFT) &none &kp LC(RIGHT)  &none    &mkp RCLK    &kp N1  &kp N2  &kp N3  &none   &trans   &trans
+&trans  &trans    &trans    &trans     &trans       &trans       &trans &trans  &kp N0  &trans  &trans  &trans
             >;
             sensor-bindings = <&hist_enc &tab_enc>;
         };
